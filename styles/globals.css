@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============== CUSTOM GLOBAL STYLING HERE ===============  */
+:root {
+  --baktiblue: rgb(64, 109, 150);
+  --baktiblue50: rgba(64, 109, 150, 0.5);
+  --baktibluelight: rgb(168, 208, 218);
+  --baktibluelight50: rgba(168, 208, 218, 0.5);
+  --baktibluelight2: rgb(233, 245, 247);
+  --baktibluelight250: rgba(233, 245, 247, 0.5);
+  --baktibluegrey: rgb(247, 247, 247);
+  --baktibluegrey50: rgba(247, 247, 247, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Background Colors */
+.bgMe {
+  background-color: tomato;
+}
+.bgJi {
+  background-color: lightsalmon;
+}
+
+.bgKu {
+  background-color: lemonchiffon;
+}
+
+.bgHi {
+  background-color: darkseagreen;
+}
+
+.bgBi {
+  background-color: powderblue;
+}
+
+.bgNi {
+  background-color: lavender;
+}
+
+.bgU {
+  background-color: thistle;
+}
+
+.bgW {
+  background-color: white;
+}
+
+.bgB {
+  background-color: black;
+}
+
+.bgBaktiBlue {
+  background-color: var(--baktiblue) !important;
+}
+
+.bgBaktiBlueGrey {
+  background-color: var(--baktibluegrey) !important;
+}
+
+.bgBaktiBlueLight {
+  background-color: var(--baktibluelight) !important;
+}
+
+.bgBaktiBlueLight2 {
+  background-color: var(--baktibluelight2) !important;
+}
+
+/* Color  */
+.cMe {
+  color: tomato;
+}
+.cJi {
+  color: lightsalmon;
+}
+
+.cKu {
+  color: lemonchiffon;
+}
+
+.cHi {
+  color: darkseagreen;
+}
+
+.cBi {
+  color: powderblue;
+}
+
+.cNi {
+  color: lavender;
+}
+
+.cU {
+  color: thistle;
+}
+
+.cW {
+  color: white;
+}
+
+.cB {
+  color: black;
+}
+
+.cBaktiBlue {
+  color: var(--baktiblue) !important;
+}
+
+.cBaktiBlueGrey {
+  color: var(--baktibluegrey) !important;
+}
+
+.cBaktiBlueLight {
+  color: var(--baktibluelight) !important;
+}
+
+.cBaktiBlueLight2 {
+  color: var(--baktibluelight2) !important;
+}
+
+.shadowBaktiBottom {
+  box-shadow: 0px 4px 12px var(--baktibluelight50) !important;
+}
+
+.shadowBaktiTop {
+  box-shadow: 0px -4px 12px var(--baktibluelight50) !important;
+}
+
+/* Flex box */
+.flexboxRowCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexboxColCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexboxRowStart {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flexboxColStart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flexboxRowEnd {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flexboxColEnd {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flexboxRowBetween {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexboxColBetween {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flexboxRowAround {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flexboxColAround {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.flexboxRowEvenly {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.flexboxColEvenly {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
