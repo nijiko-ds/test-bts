@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 const NavigationBar = () => {
+  const { asPath } = useRouter();
+
   const router = useRouter();
   console.log(router.pathname);
   const iconDashboard = () => {
@@ -83,9 +85,19 @@ const NavigationBar = () => {
   return (
     <div className='container top-auto flex justify-around align-center min-w-full'>
       <Link href='/dashboard'>
-        <div className='flexboxColCenter cBaktiBlueLight'>
+        <div
+          className={`flexboxColCenter ${
+            asPath === "/dashboard" ? "cBaktiBlue" : "cBaktiBlueLight"
+          }`}
+        >
           {iconDashboard()}
-          <a className='text-xs cBaktiBlueLight'>Dashboard</a>
+          <a
+            className={`text-xs ${
+              asPath === "/dashboard" ? "cBaktiBlue" : "cBaktiBlueLight"
+            }`}
+          >
+            Dashboard
+          </a>
         </div>
       </Link>
       {/* <Link href='/form'>
@@ -95,15 +107,35 @@ const NavigationBar = () => {
         </div>
       </Link> */}
       <Link href='/surveys'>
-        <div className='flexboxColCenter cBaktiBlueLight'>
+        <div
+          className={`flexboxColCenter ${
+            asPath === "/surveys" ? "cBaktiBlue" : "cBaktiBlueLight"
+          }`}
+        >
           {iconSurveys()}
-          <a className='text-xs cBaktiBlueLight'>Surveys</a>
+          <a
+            className={`text-xs ${
+              asPath === "/surveys" ? "cBaktiBlue" : "cBaktiBlueLight"
+            }`}
+          >
+            Surveys
+          </a>
         </div>
       </Link>
       <Link href='/profile'>
-        <div className='flexboxColCenter cBaktiBlueLight'>
+        <div
+          className={`flexboxColCenter ${
+            asPath === "/profile" ? "cBaktiBlue" : "cBaktiBlueLight"
+          }`}
+        >
           {iconProfile()}
-          <a className='text-xs cBaktiBlueLight'>Profile</a>
+          <a
+            className={`text-xs ${
+              asPath === "/profile" ? "cBaktiBlue" : "cBaktiBlueLight"
+            }`}
+          >
+            Profile
+          </a>
         </div>
       </Link>
     </div>

@@ -6,6 +6,8 @@
 :root {
   --baktiblue: rgb(64, 109, 150);
   --baktiblue50: rgba(64, 109, 150, 0.5);
+  --baktiblue2: rgb(235, 244, 252);
+  --baktiblue250: rgba(235, 244, 252, 0.5);
   --baktibluelight: rgb(168, 208, 218);
   --baktibluelight50: rgba(168, 208, 218, 0.5);
   --baktibluelight2: rgb(233, 245, 247);
@@ -68,6 +70,10 @@
 
 .bgBaktiBlue {
   background-color: var(--baktiblue) !important;
+}
+
+.bgBaktiBlue2 {
+  background-color: var(--baktiblue2) !important;
 }
 
 .bgBaktiBlueGrey {
