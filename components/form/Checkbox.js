@@ -7,7 +7,7 @@ const CheckboxComponent = (props) => {
   const [valyu, setValyu] = useState("");
   function onChange(checkedValues) {
     console.log("checked = ", checkedValues);
-    localStorage.setItem(`${savedValue}`, checkedValues);
+    window.localStorage.setItem(`${savedValue}`, checkedValues);
     setValyu(checkedValues);
   }
 
@@ -18,7 +18,7 @@ const CheckboxComponent = (props) => {
   let defaultValyu = ["Apple"];
 
   return (
-    <Form form={form} layout="vertical">
+    <Form form={form} layout='vertical'>
       <Form.Item label={label}>
         <Checkbox.Group
           options={options}

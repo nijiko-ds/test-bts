@@ -18,11 +18,11 @@ const Layout = ({ title, children }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <header className='h-20 px-4 flexboxRowBetween bgBaktiBlueLight2'>
-        <h1 className='text-xl'>{title}</h1>
+      <header className='h-16 px-4 flexboxRowBetween  alignEndImp bgBaktiBlueLight2 pb-2'>
+        <h1 className='text-xl m-0 p-0'>{title}</h1>
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          className='h-5 w-5'
+          className='h-6 w-6'
           viewBox='0 0 20 20'
           fill='currentColor'
         >

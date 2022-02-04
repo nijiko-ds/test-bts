@@ -5,9 +5,7 @@ import Link from "next/link";
 
 const NavigationBar = () => {
   const { asPath } = useRouter();
-
   const router = useRouter();
-  console.log(router.pathname);
   const iconDashboard = () => {
     return (
       <svg
@@ -87,25 +85,39 @@ const NavigationBar = () => {
       <Link href='/dashboard'>
         <div
           className={`flexboxColCenter ${
-            asPath === "/dashboard" ? "cBaktiBlue" : "cBaktiBlueLight"
+            asPath === "/dashboard" || asPath === "/"
+              ? "cBaktiBlue"
+              : "cBaktiBlueLight"
           }`}
         >
           {iconDashboard()}
           <a
             className={`text-xs ${
-              asPath === "/dashboard" ? "cBaktiBlue" : "cBaktiBlueLight"
+              asPath === "/dashboard" || asPath === "/"
+                ? "cBaktiBlue"
+                : "cBaktiBlueLight"
             }`}
           >
             Dashboard
           </a>
         </div>
       </Link>
-      {/* <Link href='/form'>
-        <div className='flexboxColCenter cBaktiBlueLight'>
+      <Link href='/form'>
+        <div
+          className={`flexboxColCenter ${
+            asPath === "/form" ? "cBaktiBlue" : "cBaktiBlueLight"
+          }`}
+        >
           {iconForm()}
-          <a className='text-xs cBaktiBlueLight'>Form</a>
+          <a
+            className={`text-xs ${
+              asPath === "/form" ? "cBaktiBlue" : "cBaktiBlueLight"
+            }`}
+          >
+            Form
+          </a>
         </div>
-      </Link> */}
+      </Link>
       <Link href='/surveys'>
         <div
           className={`flexboxColCenter ${

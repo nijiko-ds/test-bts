@@ -11,6 +11,8 @@ import Input from "../../components/form/Input";
 // import Date from "../../components/form/Date";
 import { useEffect } from "react";
 
+import API from "../../services";
+
 const FormComponent = () => {
   const [form] = Form.useForm();
   const router = useRouter();
@@ -35,7 +37,7 @@ const FormComponent = () => {
       lampiran: "",
     };
     // if (nama !== "" && email !== "" && noHp !== "" && jeniskelamin !== "") {
-    localStorage.setItem("formdata", JSON.stringify(data));
+    window.localStorage.setItem("formdata", JSON.stringify(data));
     // }
   };
 

@@ -4,12 +4,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import "antd/dist/antd.css";
 
 // import components
-import Layout from "../components/Layout";
-import Card from "../components/dashboard/Card";
+import Layout from "../../components/Layout";
+import Card from "../../components/dashboard/Card";
 
 // import api
-import API from "../services";
-import TablePenugasan from "../components/dashboard/TablePenugasan";
+import API from "../../services";
+import TablePenugasan from "../../components/dashboard/TablePenugasan";
 
 const Dashboard = () => {
   const [permintaanBTS, setPermintaanBTS] = useState("");
