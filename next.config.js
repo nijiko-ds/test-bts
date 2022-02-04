@@ -11,6 +11,6 @@ module.exports = withPWA({
     buildExcludes: [/middleware-manifest.json$/],
     // scope: "/dashboard", // untuk main homenya
     // ini untuk development
-    // disable: process.env.NODE_ENV === "development",
+    disable: process.env.NODE_ENV === "development",
   },
 });

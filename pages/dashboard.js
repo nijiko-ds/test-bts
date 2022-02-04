@@ -32,18 +32,18 @@ const Dashboard = () => {
         if (res.status === 200) {
           console.log("permintaan bts ", res?.data?.message?.split(" ")[0]);
           setPermintaanBTS(res?.data?.message?.split(" ")[0]);
-          window.sessionStorage.setItem(
+          window.localStorage.setItem(
             "permintaanBTS",
             res?.data?.message?.split(" ")[0]
           );
         } else {
-          setPermintaanBTS(window.sessionStorage.getItem("permintaanBTS"));
+          setPermintaanBTS(window.localStorage.getItem("permintaanBTS"));
         }
         setloadingCard(false);
       })
       .catch((err) => {
         setloadingCard(false);
-        setPermintaanBTS(window.sessionStorage.getItem("permintaanBTS"));
+        setPermintaanBTS(window.localStorage.getItem("permintaanBTS"));
         console.log(err);
       });
   }, []);
@@ -57,18 +57,18 @@ const Dashboard = () => {
         if (res.status === 200) {
           console.log("dilakukan bts ", res?.data?.message?.split(" ")[0]);
           setDilakukanBTS(res?.data?.message?.split(" ")[0]);
-          window.sessionStorage.setItem(
+          window.localStorage.setItem(
             "dilakukanBTS",
             res?.data?.message?.split(" ")[0]
           );
         } else {
-          setDilakukanBTS(window.sessionStorage.getItem("dilakukanBTS"));
+          setDilakukanBTS(window.localStorage.getItem("dilakukanBTS"));
         }
         setloadingCard(false);
       })
       .catch((err) => {
         setloadingCard(false);
-        setDilakukanBTS(window.sessionStorage.getItem("dilakukanBTS"));
+        setDilakukanBTS(window.localStorage.getItem("dilakukanBTS"));
         console.log(err);
       });
   }, []);
