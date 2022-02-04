@@ -2,20 +2,26 @@ import React from "react";
 import { DatePicker, Form } from "antd";
 
 const Date = (props) => {
+  const moment = require("moment");
   const [form] = Form.useForm();
-  const { savedValue, label } = props;
+  const { savedValue, value, setState, label } = props;
 
-  function onChange(date, dateString) {
-    console.log(date, dateString);
-    localStorage.setItem(`${savedValue}`, date);
-  }
-
+  const dateFormat = "YYYY/MM/DD";
+  // function onChange(date, dateString) {
+  //   console.log(date, dateString);
+  //   setState(moment(date).format("DD/MM/YYYY"));
+  //   // localStorage.setItem(`${savedValue}`, date);
+  // }
+  console.log("tanggaldalamdate.js", typeof value, value);
+  const valueString = moment(`${value}`, "YYYY/MM/DD");
   return (
-    <Form form={form} layout="vertical">
-      <Form.Item label={label} name="layout">
-        <DatePicker onChange={onChange} />
-      </Form.Item>
-    </Form>
+    <Form.Item label={label} name='layout'>
+      <DatePicker
+        onChange={(date, dateString) => setState(dateString)}
+        defaultValue={valueString}
+        format={dateFormat}
+      />
+    </Form.Item>
   );
 };
 
