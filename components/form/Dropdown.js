@@ -25,7 +25,7 @@ const Dropdown = (props) => {
   useEffect(() => {
     localStorage.setItem(`${savedValue}`, changeValue);
   }, [changeValue, changeSearch]);
-
+  console.log("defaultvalue", props.value);
   return (
     <Form.Item
       label={label}
@@ -37,6 +37,7 @@ const Dropdown = (props) => {
         showSearch
         placeholder={placeholder}
         optionFilterProp='children'
+        defaultValue={props.value}
         onChange={onChange}
         onSearch={onSearch}
         filterOption={(input, option) =>
