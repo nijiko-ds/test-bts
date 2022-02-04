@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 import API from "../../services";
+import Link from "next/link";
 
 const TablePenugasan = () => {
   const userid = "5f1ee0be8b451e60ee15de8b";
@@ -72,7 +73,7 @@ const TablePenugasan = () => {
         <p className='w-6/12'>Tanggal</p>
       </div>
 
-      <div className='px-4 mb-4'>
+      <div className='px-4'>
         <hr />
       </div>
 
@@ -82,14 +83,18 @@ const TablePenugasan = () => {
       ) : (
         tableData.length > 0 &&
         tableData?.map((data, i) => {
-          console.log("data idzzz", data?._id);
+          console.log(data);
+          let bgColor = i % 2 === 0 ? "bg-white" : "bg-slate-100";
           return (
-            <Link href={`/form/${data._id}`}>
-              <div key={i} className='flexboxRowStart px-4 cursor-pointer'>
-                <p className='flex flex-col px-2 flexboxColStart w-6/12'>
+            <Link href={`form/${data?._id}` ?? "#"}>
+              <div
+                key={i}
+                className={`flexboxRowStart px-4 ${bgColor} justify-center`}
+              >
+                <p className='flex flex-col p-2 flexboxColStart w-6/12 mb-0'>
                   {data?.kode ?? "-"} {data?.lokasisurvey?.desa?.name ?? "-"}
                 </p>
-                <p className='px-2 flexboxColCenter w-6/12'>
+                <p className='p-2 flexboxColCenter w-6/12 mb-0'>
                   {moment(data?.target)?.format("DD/MM/YYYY") ?? "-"}
                 </p>
               </div>
