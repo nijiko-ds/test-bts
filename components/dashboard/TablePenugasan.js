@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 import API from "../../services";
-import Link from "next/link";
 
 const TablePenugasan = () => {
   const userid = "5f1ee0be8b451e60ee15de8b";
