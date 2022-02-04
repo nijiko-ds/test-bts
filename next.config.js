@@ -9,8 +9,8 @@ module.exports = withPWA({
     skipWaiting: true,
     runtimeCaching,
     buildExcludes: [/middleware-manifest.json$/],
-    scope: "/dashboard", // untuk main homenya
+    // scope: "/dashboard", // untuk main homenya
     // ini untuk development
-    disable: process.env.NODE_ENV === "development",
+    // disable: process.env.NODE_ENV === "development",
   },
 });
