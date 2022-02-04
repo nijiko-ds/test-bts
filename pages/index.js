@@ -15,7 +15,7 @@ import Decrement from "../components/Decrement";
 import Dashboard from "./dashboard";
 
 export default function Home() {
-  const count = useSelector((state) => state.counter.value);
+  // const count = useSelector((state) => state.counter.value);  <<<< DONT DELETE THIS
 
   return (
     <>

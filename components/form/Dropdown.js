@@ -24,20 +24,20 @@ const Dropdown = (props) => {
   }
 
   useEffect(() => {
-    localStorage.setItem(`${savedValue}`, changeValue);
+    window.localStorage.setItem(`${savedValue}`, changeValue);
   }, [changeValue, changeSearch]);
   console.log("defaultvalue", props.value);
   return (
     <Form.Item
       label={label}
-      name="layout"
+      name='layout'
       required={required}
-      tooltip="Input harus diisi"
+      tooltip='Input harus diisi'
     >
       <Select
         showSearch
         placeholder={placeholder}
-        optionFilterProp="children"
+        optionFilterProp='children'
         defaultValue={props.value}
         onChange={onChange}
         onSearch={onSearch}
