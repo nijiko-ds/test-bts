@@ -8,7 +8,7 @@ import "antd/dist/antd.css";
 import Layout from "../../components/Layout";
 import Input from "../../components/form/Input";
 import Dropdown from "../../components/form/Dropdown";
-import { data } from "autoprefixer";
+import Date from "../../components/form/Date";
 import { useEffect } from "react";
 
 const FormComponent = () => {
@@ -20,6 +20,7 @@ const FormComponent = () => {
   const [jeniskelamin, setJeniskelamin] = useState("");
   const [email, setEmail] = useState("");
   const [noHp, setNoHp] = useState("");
+  const [tanggallahir, setTanggallahir] = useState("");
 
   const [localData, setlocalData] = useState({});
 
@@ -29,13 +30,13 @@ const FormComponent = () => {
       jeniskelamin: jeniskelamin,
       email: email,
       nohp: noHp,
-      tangallahir: "",
+      tanggallahir: tanggallahir,
       foto: "",
       lampiran: "",
     };
-    if (nama !== "" && email !== "" && noHp !== "" && jeniskelamin !== "") {
-      localStorage.setItem("formdata", JSON.stringify(data));
-    }
+    // if (nama !== "" && email !== "" && noHp !== "" && jeniskelamin !== "") {
+    localStorage.setItem("formdata", JSON.stringify(data));
+    // }
   };
 
   useEffect(() => {
@@ -48,13 +49,17 @@ const FormComponent = () => {
       setJeniskelamin(localData?.jeniskelamin);
       setEmail(localData?.email);
       setNoHp(localData?.nohp);
+      setTanggallahir(localData?.tanggallahir);
     } else {
       setNama("");
       setJeniskelamin("");
       setEmail("");
       setNoHp("");
+      setTanggallahir("");
     }
   }, [localData]);
+
+  console.log("tanggaldalamid.js", tanggallahir);
 
   return (
     <Layout title='Form Penugasan'>
@@ -87,6 +92,11 @@ const FormComponent = () => {
             value={noHp}
             type='number'
             required={true}
+          />
+          <Date
+            label='Tanggal Lahir'
+            value={tanggallahir}
+            setState={setTanggallahir}
           />
 
           {/* ========== BUTTONS  */}
