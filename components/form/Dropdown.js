@@ -3,7 +3,8 @@ import { Select, Form } from "antd";
 
 const Dropdown = (props) => {
   const { Option } = Select;
-  const { options, savedValue, label, placeholder } = props;
+  const { options, savedValue, label, placeholder, required, value, setState } =
+    props;
 
   const [changeValue, setChangeValue] = useState("");
   const [changeSearch, setChangeSearch] = useState("");
@@ -13,6 +14,7 @@ const Dropdown = (props) => {
   function onChange(value) {
     console.log(`selected ${value}`);
     setChangeValue(value);
+    setState(value);
   }
 
   function onSearch(val) {
@@ -23,26 +25,30 @@ const Dropdown = (props) => {
   useEffect(() => {
     localStorage.setItem(`${savedValue}`, changeValue);
   }, [changeValue, changeSearch]);
-
+  console.log("defaultvalue", props.value);
   return (
-    <Form form={form} layout="vertical">
-      <Form.Item label={label} name="layout">
-        <Select
-          showSearch
-          placeholder={placeholder}
-          optionFilterProp="children"
-          onChange={onChange}
-          onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {options.map((e) => (
-            <Option value={e?.value}>{e?.label}</Option>
-          ))}
-        </Select>
-      </Form.Item>
-    </Form>
+    <Form.Item
+      label={label}
+      name='layout'
+      required={required}
+      tooltip='Input harus diisi'
+    >
+      <Select
+        showSearch
+        placeholder={placeholder}
+        optionFilterProp='children'
+        defaultValue={props.value}
+        onChange={onChange}
+        onSearch={onSearch}
+        filterOption={(input, option) =>
+          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+        }
+      >
+        {options.map((e) => (
+          <Option value={e?.value}>{e?.label}</Option>
+        ))}
+      </Select>
+    </Form.Item>
   );
 };
 
