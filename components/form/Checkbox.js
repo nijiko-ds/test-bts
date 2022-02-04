@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Checkbox, Form } from "antd";
 
 const CheckboxComponent = (props) => {
   const [form] = Form.useForm();
   const { label, options, savedValue } = props;
+  const [valyu, setValyu] = useState("");
   function onChange(checkedValues) {
     console.log("checked = ", checkedValues);
     localStorage.setItem(`${savedValue}`, checkedValues);
+    setValyu(checkedValues);
   }
+
+  useEffect(() => {
+    onChange(defaultValyu);
+  }, []);
+
+  let defaultValyu = ["Apple"];
 
   return (
     <Form form={form} layout="vertical">
@@ -15,8 +23,8 @@ const CheckboxComponent = (props) => {
         <Checkbox.Group
           options={options}
           disabled={options.disabled}
-          defaultValue={["Apple"]}
-          onChange={onChange}
+          defaultValue={defaultValyu}
+          onChange={(e) => onChange(e)}
         />
       </Form.Item>
     </Form>

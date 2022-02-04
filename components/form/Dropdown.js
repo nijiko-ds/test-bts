@@ -7,6 +7,7 @@ const Dropdown = (props) => {
 
   const [changeValue, setChangeValue] = useState("");
   const [changeSearch, setChangeSearch] = useState("");
+  const [defaultValyu, setDefaultValyu] = useState("female");
 
   const [form] = Form.useForm();
 
@@ -31,6 +32,7 @@ const Dropdown = (props) => {
           showSearch
           placeholder={placeholder}
           optionFilterProp="children"
+          defaultValue={defaultValyu}
           onChange={onChange}
           onSearch={onSearch}
           filterOption={(input, option) =>
