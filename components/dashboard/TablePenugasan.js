@@ -85,7 +85,7 @@ const TablePenugasan = () => {
           console.log(data);
           let bgColor = i % 2 === 0 ? "bg-white" : "bg-slate-100";
           return (
-            <Link href={`form/${data?._id}` ?? "#"}>
+            <Link href={`/form/${data?._id}` ?? "#"}>
               <div
                 key={i}
                 className={`flexboxRowStart px-4 ${bgColor} justify-center`}
