@@ -18,7 +18,7 @@ const Layout = ({ title, children }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <header className='h-24 px-4 flexboxRowBetween bgBaktiBlueLight2'>
+      <header className='h-20 px-4 flexboxRowBetween bgBaktiBlueLight2'>
         <h1 className='text-xl'>{title}</h1>
         <svg
           xmlns='http://www.w3.org/2000/svg'
