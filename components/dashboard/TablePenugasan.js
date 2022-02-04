@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import API from "../../services";
+import Link from "next/link";
 
 const TablePenugasan = () => {
   const userid = "5f1ee0be8b451e60ee15de8b";
@@ -62,33 +63,40 @@ const TablePenugasan = () => {
 
   return (
     <div>
-      <div className='p-4 flexboxColCenter text-lg'>
-        <h1 className='text-m font-bold cBaktiBlue'>Daftar Penugasannn</h1>
+      <div className="p-4 flexboxColCenter text-lg">
+        <h1 className="text-m font-bold cBaktiBlue">Daftar Penugasannn</h1>
       </div>
       {/* ==== table head  */}
-      <div className='flexboxRowCenter px-4 font-bold text-center'>
-        <p className='w-6/12'>Kode Survey</p>
-        <p className='w-6/12'>Tanggal</p>
+      <div className="flexboxRowCenter px-4 font-bold text-center">
+        <p className="w-6/12">Kode Survey</p>
+        <p className="w-6/12">Tanggal</p>
       </div>
 
-      <div className='px-4 mb-4'>
+      <div className="px-4">
         <hr />
       </div>
 
       {/* ==== table body */}
       {loading ? (
-        <div className='flexboxColCenter'>........</div>
+        <div className="flexboxColCenter">........</div>
       ) : (
         tableData?.map((data, i) => {
+          console.log(data);
+          let bgColor = i % 2 === 0 ? "bg-white" : "bg-slate-100";
           return (
-            <div key={i} className='flexboxRowStart px-4'>
-              <p className='flex flex-col px-2 flexboxColStart w-6/12'>
-                {data?.kode ?? "-"} {data?.lokasisurvey?.desa?.name ?? "-"}
-              </p>
-              <p className='px-2 flexboxColCenter w-6/12'>
-                {moment(data?.target)?.format("DD/MM/YYYY") ?? "-"}
-              </p>
-            </div>
+            <Link href={`form/${data?._id}` ?? "#"}>
+              <div
+                key={i}
+                className={`flexboxRowStart px-4 ${bgColor} justify-center`}
+              >
+                <p className="flex flex-col p-2 flexboxColStart w-6/12 mb-0">
+                  {data?.kode ?? "-"} {data?.lokasisurvey?.desa?.name ?? "-"}
+                </p>
+                <p className="p-2 flexboxColCenter w-6/12 mb-0">
+                  {moment(data?.target)?.format("DD/MM/YYYY") ?? "-"}
+                </p>
+              </div>
+            </Link>
           );
         })
       )}
