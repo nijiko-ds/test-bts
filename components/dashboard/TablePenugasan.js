@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 import API from "../../services";
 import Link from "next/link";
@@ -63,23 +64,24 @@ const TablePenugasan = () => {
 
   return (
     <div>
-      <div className="p-4 flexboxColCenter text-lg">
-        <h1 className="text-m font-bold cBaktiBlue">Daftar Penugasannn</h1>
+      <div className='p-4 flexboxColCenter text-lg'>
+        <h1 className='text-m font-bold cBaktiBlue'>Daftar Penugasan</h1>
       </div>
       {/* ==== table head  */}
-      <div className="flexboxRowCenter px-4 font-bold text-center">
-        <p className="w-6/12">Kode Survey</p>
-        <p className="w-6/12">Tanggal</p>
+      <div className='flexboxRowCenter px-4 font-bold text-center'>
+        <p className='w-6/12'>Kode Survey</p>
+        <p className='w-6/12'>Tanggal</p>
       </div>
 
-      <div className="px-4">
+      <div className='px-4'>
         <hr />
       </div>
 
       {/* ==== table body */}
       {loading ? (
-        <div className="flexboxColCenter">........</div>
+        <div className='flexboxColCenter mt-10'>........</div>
       ) : (
+        tableData.length > 0 &&
         tableData?.map((data, i) => {
           console.log(data);
           let bgColor = i % 2 === 0 ? "bg-white" : "bg-slate-100";
@@ -89,10 +91,10 @@ const TablePenugasan = () => {
                 key={i}
                 className={`flexboxRowStart px-4 ${bgColor} justify-center`}
               >
-                <p className="flex flex-col p-2 flexboxColStart w-6/12 mb-0">
+                <p className='flex flex-col p-2 flexboxColStart w-6/12 mb-0'>
                   {data?.kode ?? "-"} {data?.lokasisurvey?.desa?.name ?? "-"}
                 </p>
-                <p className="p-2 flexboxColCenter w-6/12 mb-0">
+                <p className='p-2 flexboxColCenter w-6/12 mb-0'>
                   {moment(data?.target)?.format("DD/MM/YYYY") ?? "-"}
                 </p>
               </div>

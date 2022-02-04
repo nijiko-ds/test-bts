@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
 
 // styling
 import "antd/dist/antd.css";
