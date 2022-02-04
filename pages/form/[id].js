@@ -7,8 +7,8 @@ import "antd/dist/antd.css";
 
 import Layout from "../../components/Layout";
 import Input from "../../components/form/Input";
-import Dropdown from "../../components/form/Dropdown";
-import Date from "../../components/form/Date";
+// import Dropdown from "../../components/form/Dropdown";
+// import Date from "../../components/form/Date";
 import { useEffect } from "react";
 
 const FormComponent = () => {
@@ -66,7 +66,7 @@ const FormComponent = () => {
       <div className='p-4'>
         <Form layout='vertical' form={form} requiredMark={true}>
           <Input label='Nama' setState={setNama} value={nama} required={true} />
-          <Dropdown
+          {/* <Dropdown
             options={[
               { value: "laki-laki", label: "Laki-laki" },
               { value: "perempuan", label: "Perempuan" },
@@ -78,7 +78,7 @@ const FormComponent = () => {
             required={true}
             value={jeniskelamin}
             setState={setJeniskelamin}
-          />
+          /> */}
           <Input
             label='Email'
             setState={setEmail}
@@ -93,11 +93,11 @@ const FormComponent = () => {
             type='number'
             required={true}
           />
-          <Date
+          {/* <Date
             label='Tanggal Lahir'
             value={tanggallahir}
             setState={setTanggallahir}
-          />
+          /> */}
 
           {/* ========== BUTTONS  */}
           <Form.Item
