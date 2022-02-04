@@ -32,16 +32,16 @@ const TablePenugasan = () => {
       .then(async (res) => {
         if (res.status === 200) {
           console.log("Data penugasan ", res.data.values);
-          await window.sessionStorage.setItem(
+          await window.localStorage.setItem(
             "tableDataPenugasanBTS",
             JSON.stringify(res.data.values)
           );
           await settableData(
-            JSON.parse(window.sessionStorage.getItem("tableDataPenugasanBTS"))
+            JSON.parse(window.localStorage.getItem("tableDataPenugasanBTS"))
           );
         } else {
           settableData(
-            JSON.parse(window.sessionStorage.getItem("tableDataPenugasanBTS"))
+            JSON.parse(window.localStorage.getItem("tableDataPenugasanBTS"))
           );
         }
         setloading(false);
@@ -50,7 +50,7 @@ const TablePenugasan = () => {
         settableData(null);
         setloading(false);
         settableData(
-          JSON.parse(window.sessionStorage.getItem("tableDataPenugasanBTS"))
+          JSON.parse(window.localStorage.getItem("tableDataPenugasanBTS"))
         );
         // console.log(err);
       });
