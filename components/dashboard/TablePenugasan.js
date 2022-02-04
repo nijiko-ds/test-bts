@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 import API from "../../services";
 
@@ -63,7 +64,7 @@ const TablePenugasan = () => {
   return (
     <div>
       <div className='p-4 flexboxColCenter text-lg'>
-        <h1 className='text-m font-bold cBaktiBlue'>Daftar Penugasannn</h1>
+        <h1 className='text-m font-bold cBaktiBlue'>Daftar Penugasan</h1>
       </div>
       {/* ==== table head  */}
       <div className='flexboxRowCenter px-4 font-bold text-center'>
@@ -77,18 +78,22 @@ const TablePenugasan = () => {
 
       {/* ==== table body */}
       {loading ? (
-        <div className='flexboxColCenter'>........</div>
+        <div className='flexboxColCenter mt-10'>........</div>
       ) : (
+        tableData.length > 0 &&
         tableData?.map((data, i) => {
+          console.log("data idzzz", data?._id);
           return (
-            <div key={i} className='flexboxRowStart px-4'>
-              <p className='flex flex-col px-2 flexboxColStart w-6/12'>
-                {data?.kode ?? "-"} {data?.lokasisurvey?.desa?.name ?? "-"}
-              </p>
-              <p className='px-2 flexboxColCenter w-6/12'>
-                {moment(data?.target)?.format("DD/MM/YYYY") ?? "-"}
-              </p>
-            </div>
+            <Link href={`/form/${data._id}`}>
+              <div key={i} className='flexboxRowStart px-4 cursor-pointer'>
+                <p className='flex flex-col px-2 flexboxColStart w-6/12'>
+                  {data?.kode ?? "-"} {data?.lokasisurvey?.desa?.name ?? "-"}
+                </p>
+                <p className='px-2 flexboxColCenter w-6/12'>
+                  {moment(data?.target)?.format("DD/MM/YYYY") ?? "-"}
+                </p>
+              </div>
+            </Link>
           );
         })
       )}
