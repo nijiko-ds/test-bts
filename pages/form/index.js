@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
-
+import { useRouter } from "next/router";
 // dynamic import (lazy loading nya next.js)
 import dynamic from "next/dynamic";
 
 const SectionCover = dynamic(() =>
   import("../../components/form/sections/SectionCover")
+);
+const Section1 = dynamic(() =>
+  import("../../components/form/sections/Section1")
 );
 // import SectionCover from "../../components/form/sections/SectionCover";
 
@@ -24,10 +27,12 @@ const FormPage = () => {
   const { Option } = Select;
   const [form] = Form.useForm();
   const userid = "5f1ee0be8b451e60ee15de8b";
-
+  const router = useRouter();
+  const { _id } = router.query;
+  console.log("_____id", _id);
   //states
   const [kodeSurveyList, setKodeSurveyList] = useState([]);
-  const [selectedKode, setSelectedKode] = useState("Select Kode Survey");
+  const [selectedKode, setSelectedKode] = useState(_id ?? "Select Kode Survey");
   const [selectedFormType, setSelectedFormType] = useState("Cover");
   const [section, setSection] = useState([]);
   const [selectedSection, setSelectedSection] = useState(
@@ -143,6 +148,10 @@ const FormPage = () => {
 
   useEffect(() => {
     getPenugasanTable();
+
+    if (_id !== undefined) {
+      setSelectedKode(_id);
+    }
   }, []);
 
   useEffect(() => {
@@ -264,8 +273,10 @@ const FormPage = () => {
           })}
         </Select> */}
       </div>
-      {selectedSection === "Site Survey Report & Approval" && <SectionCover />}
-      {selectedSection.includes("Section 1 :") && <SectionCover />}
+      {selectedSection === sections[0][0] && (
+        <SectionCover t={sections[0][0]} />
+      )}
+      {selectedSection === sections[1][0] && <Section1 t={sections[1][0]} />}
     </Layout>
   );
 };
