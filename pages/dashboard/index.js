@@ -79,7 +79,7 @@ const Dashboard = () => {
 
   return (
     <Layout title='Dashboard'>
-      <div className='flex flex-row justify-between gap-4 p-4 pb-10 shadowBaktiBottom rounded-b-xl bgBaktiBlueLight'>
+      <div className='flex flex-row justify-between gap-4 p-4 pb-10 shadowBaktiBottom rounded-b-xl bgBaktiBlueLight pt-24'>
         <Card
           title='Permintaan Survey Masuk'
           content={loadingCard ? "..." : permintaanBTS}

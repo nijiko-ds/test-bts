@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Head from "next/head";
 
@@ -7,8 +7,28 @@ import style from "../styles/mobile.module.css";
 import NavigationBar from "./navigationBar/NavigationBar";
 
 const Layout = ({ title, children }) => {
+  // ketika scroll header ada shadow
+  const [headerShadow, setHeaderShadow] = useState("");
+
+  const handleScroll = (e) => {
+    let element = e.target;
+    if (element.scrollTop === 0) {
+      setHeaderShadow("shadowNone");
+    } else if (
+      element.scrollHeight - element.scrollTop ===
+      element.clientHeight
+    ) {
+      setHeaderShadow("shadowBaktiBottom rounded-b-xl");
+      console.log("at the bottom");
+    } else {
+      setHeaderShadow("shadowBaktiBottom rounded-b-xl");
+    }
+  };
+
   return (
-    <div className='container h-screen min-h-screen max-h-screen mx-auto max-w-xl relative overflow-hidden'>
+    <div
+      className={`container h-screen min-h-screen max-h-screen mx-auto max-w-xl relative overflow-hidden `}
+    >
       <Head className='h-10'>
         <title>{title}</title>
         <meta
@@ -18,7 +38,9 @@ const Layout = ({ title, children }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <header className='h-20 px-4 flexboxRowBetween alignEndImp bgBaktiBlueLight pb-3'>
+      <header
+        className={`h-20 px-4 absolute top-0 w-full z-50 flexboxRowBetween alignEndImp bgBaktiBlueLight pb-3 ${headerShadow}`}
+      >
         <h1 className='text-xl m-0 p-0'>{title}</h1>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -30,7 +52,10 @@ const Layout = ({ title, children }) => {
         </svg>
       </header>
 
-      <main className='mb-auto h-full overflow-auto no-scrollbar pb-56'>
+      <main
+        className='mb-auto h-full overflow-auto no-scrollbar pb-56'
+        onScroll={(e) => handleScroll(e)}
+      >
         {children}
       </main>
 
