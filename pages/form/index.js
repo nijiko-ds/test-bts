@@ -22,6 +22,7 @@ import API from "../../services";
 import Dropdown from "../../components/form/Dropdown";
 
 import Localbase from "localbase";
+// const Localbase = require("localbase");
 
 // dynamic import (lazy loading nya next.js)
 const Cover = dynamic(() => import("../../components/form/sections/Cover"));
@@ -51,6 +52,7 @@ const FormPage = () => {
   //states
   const [kodeSurveyList, setKodeSurveyList] = useState([]);
   const [selectedKode, setSelectedKode] = useState(_id ?? "Select Kode Survey");
+  console.log("_____selectedKode", selectedKode);
   const [selectedFormType, setSelectedFormType] = useState("Cover");
   const [section, setSection] = useState([]);
   const [selectedSection, setSelectedSection] = useState(
@@ -167,7 +169,7 @@ const FormPage = () => {
   useEffect(() => {
     getPenugasanTable();
 
-    if (_id !== undefined) {
+    if (_id !== undefined && _id !== "Select Kode Survey") {
       setSelectedKode(_id);
 
       db.collection(eval("strBtsMain").concat(_id))
@@ -306,14 +308,28 @@ const FormPage = () => {
       {selectedSection === sections[0][0] && (
         <SectionCover
           t={sections[0][0]}
-          idSurvey={_id !== undefined ? _id : selectedKode}
+          idSurvey={
+            _id !== undefined && _id !== "Select Kode Survey"
+              ? _id
+              : selectedKode !== undefined &&
+                selectedKode !== "Select Kode Survey"
+              ? selectedKode
+              : undefined
+          }
           kodeSurvey={selectedKode}
         />
       )}
       {selectedSection === sections[1][0] && (
         <Section1
           t={sections[1][0]}
-          idSurvey={_id !== undefined ? _id : selectedKode}
+          idSurvey={
+            _id !== undefined && _id !== "Select Kode Survey"
+              ? _id
+              : selectedKode !== undefined &&
+                selectedKode !== "Select Kode Survey"
+              ? selectedKode
+              : undefined
+          }
           kodeSurvey={selectedKode}
         />
       )}
