@@ -37,7 +37,6 @@ const Dropdown = (props) => {
   useEffect(() => {
     window.localStorage.setItem(`${savedValue}`, changeValue);
   }, [changeValue, changeSearch]);
-  console.log("options", options);
   return (
     <Form.Item
       //   label={label}
