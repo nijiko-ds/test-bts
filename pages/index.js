@@ -1,6 +1,7 @@
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 
 import { useSelector } from "react-redux";
 
@@ -19,6 +20,7 @@ export default function Home() {
 
   return (
     <>
+      <Script src='https://unpkg.com/localbase/dist/localbase.dev.js' />
       <Dashboard />
     </>
   );
