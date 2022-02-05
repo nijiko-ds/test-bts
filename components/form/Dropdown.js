@@ -16,6 +16,7 @@ const Dropdown = (props) => {
     required,
     setter,
     defaultValue,
+    defaultOpen,
     value,
     className,
     size,
@@ -70,6 +71,7 @@ const Dropdown = (props) => {
         optionFilterProp="children"
         defaultValue={defaultValue}
         value={btsMain?.[`section${section}`]?.[`${valueToBeSet}`] ?? null}
+        defaultOpen={defaultOpen}
         onChange={(e) => onChange(e)}
         size={size}
         onSearch={onSearch}

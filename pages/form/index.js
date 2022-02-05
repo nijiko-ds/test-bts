@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
-
+import { useRouter } from "next/router";
 // dynamic import (lazy loading nya next.js)
 import dynamic from "next/dynamic";
 
 const Cover = dynamic(() => import("../../components/form/sections/Cover"));
 const SectionCover = dynamic(() =>
   import("../../components/form/sections/SectionCover")
+);
+const Section1 = dynamic(() =>
+  import("../../components/form/sections/Section1")
 );
 // import SectionCover from "../../components/form/sections/SectionCover";
 
@@ -14,7 +17,7 @@ import { Form, Select } from "antd";
 import "antd/dist/antd.css";
 
 // import components
-import Layout from "../../components/Layout";
+import Layout from "../../components/Layout/Layout";
 import Card from "../../components/dashboard/Card";
 
 // import api
@@ -25,13 +28,17 @@ const FormPage = () => {
   const { Option } = Select;
   const [form] = Form.useForm();
   const userid = "5f1ee0be8b451e60ee15de8b";
-
+  const router = useRouter();
+  const { _id } = router.query;
+  console.log("_____id", _id);
   //states
   const [kodeSurveyList, setKodeSurveyList] = useState([]);
-  const [selectedKode, setSelectedKode] = useState("Select Kode Survey");
-  const [selectedFormType, setSelectedFormType] = useState("Select Form Type");
+  const [selectedKode, setSelectedKode] = useState(_id ?? "Select Kode Survey");
+  const [selectedFormType, setSelectedFormType] = useState("Cover");
   const [section, setSection] = useState([]);
-  const [selectedSection, setSelectedSection] = useState("Select Section");
+  const [selectedSection, setSelectedSection] = useState(
+    "Site Survey Report & Approval"
+  );
 
   const [loading, setloading] = useState(false);
 
@@ -142,6 +149,10 @@ const FormPage = () => {
 
   useEffect(() => {
     getPenugasanTable();
+
+    if (_id !== undefined) {
+      setSelectedKode(_id);
+    }
   }, []);
 
   useEffect(() => {
@@ -174,11 +185,9 @@ const FormPage = () => {
     }
   }, [selectedFormType]);
 
-  console.log("selected form type ", selectedFormType);
-
   return (
     <Layout title="Form Penugasan">
-      <div className="flex flex-col justify-between gap-2 p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight">
+      <div className="flex flex-col justify-between p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight pt-24">
         <label>Kode Survey</label>
         {/* <Select
           className="w-full"
@@ -203,7 +212,7 @@ const FormPage = () => {
           defaultValue={selectedKode}
           setter={setSelectedKode}
           size="large"
-          defaultOpen={true}
+          // defaultOpen={true}
           options={kodeSurveyList}
           value="_id"
           label="kode"
@@ -216,7 +225,6 @@ const FormPage = () => {
           defaultValue={selectedFormType}
           setter={setSelectedFormType}
           size="large"
-          defaultOpen={true}
           options={formTypes}
           value={null}
           label={null}
@@ -245,7 +253,6 @@ const FormPage = () => {
           defaultValue={selectedSection}
           setter={setSelectedSection}
           size="large"
-          defaultOpen={true}
           options={section}
           value={null}
           label={null}
@@ -269,7 +276,10 @@ const FormPage = () => {
       </div>
       {/* {selectedSection === "Site Survey Report & Approval" && <SectionCover />} */}
       <Cover />
-      <SectionCover />
+      {selectedSection === sections[0][0] && (
+        <SectionCover t={sections[0][0]} />
+      )}
+      {selectedSection === sections[1][0] && <Section1 t={sections[1][0]} />}
     </Layout>
   );
 };
