@@ -39,7 +39,6 @@ const FormPage = () => {
   const userid = "5f1ee0be8b451e60ee15de8b";
   const router = useRouter();
   const { _id } = router.query;
-  console.log("_____id", _id);
 
   let db = new Localbase("db");
   db.config.debug = false;
@@ -52,7 +51,6 @@ const FormPage = () => {
   //states
   const [kodeSurveyList, setKodeSurveyList] = useState([]);
   const [selectedKode, setSelectedKode] = useState(_id ?? "Select Kode Survey");
-  console.log("_____selectedKode", selectedKode);
   const [selectedFormType, setSelectedFormType] = useState("Cover");
   const [section, setSection] = useState([]);
   const [selectedSection, setSelectedSection] = useState(
@@ -215,8 +213,8 @@ const FormPage = () => {
   }, [selectedFormType]);
 
   return (
-    <Layout title="Form Penugasan">
-      <div className="flex flex-col justify-between p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight pt-24">
+    <Layout title='Form Penugasan'>
+      <div className='flex flex-col justify-between p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight pt-24'>
         <label>Kode Survey</label>
         {/* <Select
           className="w-full"
@@ -236,24 +234,24 @@ const FormPage = () => {
           })}
         </Select> */}
         <Dropdown
-          className="w-full"
-          placeholder="Select Kode Survey"
+          className='w-full'
+          placeholder='Select Kode Survey'
           defaultValue={selectedKode}
           setter={setSelectedKode}
-          size="large"
+          size='large'
           // defaultOpen={true}
           options={kodeSurveyList}
-          withValue="_id"
-          withLabel="kode"
+          withValue='_id'
+          withLabel='kode'
         />
         {/* ====================================== */}
         <label>Select Form Type</label>
         <Dropdown
-          className="w-full"
-          placeholder="Select Form Type"
+          className='w-full'
+          placeholder='Select Form Type'
           defaultValue={selectedFormType}
           setter={setSelectedFormType}
-          size="large"
+          size='large'
           options={formTypes}
           withValue={null}
           withLabel={null}
@@ -277,11 +275,11 @@ const FormPage = () => {
         {/* ====================================== */}
         <label>Select Section</label>
         <Dropdown
-          className="w-full"
-          placeholder="Select Form Type"
+          className='w-full'
+          placeholder='Select Form Type'
           defaultValue={selectedSection}
           setter={setSelectedSection}
-          size="large"
+          size='large'
           options={section}
           withValue={null}
           withLabel={null}
