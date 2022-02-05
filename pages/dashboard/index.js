@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import "antd/dist/antd.css";
 
 // import components
-import Layout from "../../components/Layout";
+import Layout from "../../components/Layout/Layout";
 import Card from "../../components/dashboard/Card";
 
 // import api

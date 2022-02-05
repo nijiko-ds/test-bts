@@ -1,4 +1,4 @@
-import Layout from "../components/Layout";
+import Layout from "../components/Layout/Layout";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
