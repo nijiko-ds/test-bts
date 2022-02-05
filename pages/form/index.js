@@ -176,8 +176,8 @@ const FormPage = () => {
   console.log("selected form type ", selectedFormType);
 
   return (
-    <Layout title="Form Penugasan">
-      <div className="flex flex-col justify-between gap-2 p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight">
+    <Layout title='Form Penugasan'>
+      <div className='flex flex-col justify-between p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight pt-24'>
         <label>Kode Survey</label>
         {/* <Select
           className="w-full"
@@ -197,25 +197,24 @@ const FormPage = () => {
           })}
         </Select> */}
         <Dropdown
-          className="w-full"
-          placeholder="Select Kode Survey"
+          className='w-full'
+          placeholder='Select Kode Survey'
           defaultValue={selectedKode}
           setter={setSelectedKode}
-          size="large"
+          size='large'
           defaultOpen={true}
           options={kodeSurveyList}
-          value="_id"
-          label="kode"
+          value='_id'
+          label='kode'
         />
         {/* ====================================== */}
         <label>Select Form Type</label>
         <Dropdown
-          className="w-full"
-          placeholder="Select Form Type"
+          className='w-full'
+          placeholder='Select Form Type'
           defaultValue={selectedFormType}
           setter={setSelectedFormType}
-          size="large"
-          defaultOpen={true}
+          size='large'
           options={formTypes}
           value={null}
           label={null}
@@ -239,12 +238,11 @@ const FormPage = () => {
         {/* ====================================== */}
         <label>Select Section</label>
         <Dropdown
-          className="w-full"
-          placeholder="Select Form Type"
+          className='w-full'
+          placeholder='Select Form Type'
           defaultValue={selectedSection}
           setter={setSelectedSection}
-          size="large"
-          defaultOpen={true}
+          size='large'
           options={section}
           value={null}
           label={null}
