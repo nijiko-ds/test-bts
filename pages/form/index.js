@@ -24,6 +24,7 @@ import Dropdown from "../../components/form/Dropdown";
 import Localbase from "localbase";
 
 // dynamic import (lazy loading nya next.js)
+const Cover = dynamic(() => import("../../components/form/sections/Cover"));
 const SectionCover = dynamic(() =>
   import("../../components/form/sections/SectionCover")
 );
@@ -300,6 +301,8 @@ const FormPage = () => {
           })}
         </Select> */}
       </div>
+      {/* {selectedSection === "Site Survey Report & Approval" && <SectionCover />} */}
+      <Cover />
       {selectedSection === sections[0][0] && (
         <SectionCover
           t={sections[0][0]}
