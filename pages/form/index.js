@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 
+// dynamic import (lazy loading nya next.js)
+import dynamic from "next/dynamic";
+
+const SectionCover = dynamic(() =>
+  import("../../components/form/sections/SectionCover")
+);
+// import SectionCover from "../../components/form/sections/SectionCover";
+
 // styling
 import { Form, Select } from "antd";
 import "antd/dist/antd.css";
@@ -10,7 +18,6 @@ import Card from "../../components/dashboard/Card";
 
 // import api
 import API from "../../services";
-import SectionCover from "../../components/form/sections/SectionCover";
 
 const FormPage = () => {
   const { Option } = Select;
@@ -167,7 +174,7 @@ const FormPage = () => {
 
   return (
     <Layout title='Form Penugasan'>
-      <div className='flex flex-col justify-between gap-2 p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight2'>
+      <div className='flex flex-col justify-between gap-2 p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight'>
         <label>Kode Survey</label>
         <Select
           className='w-full'
@@ -175,6 +182,8 @@ const FormPage = () => {
           optionFilterProp='children'
           defaultValue={selectedKode}
           onChange={(e) => setSelectedFormType(e)}
+          size='large'
+          defaultOpen={true}
         >
           {kodeSurveyList?.map((d, i) => {
             return (
@@ -192,6 +201,7 @@ const FormPage = () => {
           optionFilterProp='children'
           defaultValue={selectedFormType}
           onChange={(e) => setSelectedFormType(e)}
+          size='large'
         >
           {formTypes.map((d, i) => {
             return (
@@ -209,6 +219,7 @@ const FormPage = () => {
           optionFilterProp='children'
           defaultValue={selectedSection}
           onChange={(e) => setSelectedFormType(e)}
+          size='large'
         >
           {section.map((d, i) => {
             return (
