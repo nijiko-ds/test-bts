@@ -3,11 +3,12 @@ import { useSelector } from "react-redux";
 import SectionLayout from "../../Layout/SectionLayout";
 
 import Input from "../Input";
+import LatitudeLongitude from "../LongitudeLatitude";
 
-const SectionCover = () => {
+const SectionCover = ({ t }) => {
   const btsMain = useSelector((state) => state.formbts.btsMain);
   return (
-    <SectionLayout title='Site Survey Report & Approval'>
+    <SectionLayout title={t}>
       <Input
         label='Site ID'
         section='1'
@@ -52,14 +53,19 @@ const SectionCover = () => {
         value={btsMain?.section1?.provinsi}
         type='text'
       />
-      <hr />
-      <p>Koordinat (DD Format)</p>
+      <hr className='mb-3' />
+      <h5 className='font-extrabold text-m'>Koordinat (DD Format)</h5>
+      <LatitudeLongitude
+        section='3'
+        latLabel='Koordinat GPS WGS84 - Latitude'
+        lonLabel='Koordinat GPS WGS84 - Longitude'
+      />
+      <hr className='mb-3' />
+      <h5 className='font-extrabold text-m'>Diketahui Oleh</h5>
 
-      <hr />
-      <h5>Diketahui Oleh</h5>
-
-      <p className='m-0 p-0 cBaktiBlue font-bold'>Surveyor Penyedia</p>
-      <hr style={{ width: "50%", margin: "0px 0px 8px 0px", padding: "0px" }} />
+      <p className='m-0 mb-2 p-0 pb-2 cBaktiBlue font-bold border-b bBaktiBlue'>
+        Surveyor Penyedia
+      </p>
       <Input
         fakelabel='Nama'
         label='Nama Surveyor'
@@ -75,8 +81,9 @@ const SectionCover = () => {
         type='number'
       />
 
-      <p className='m-0 p-0 cBaktiBlue font-bold'>Dinas KOMINFO Kabupaten</p>
-      <hr style={{ width: "50%", margin: "0px 0px 8px 0px", padding: "0px" }} />
+      <p className='m-0 mb-2 p-0 pb-2 cBaktiBlue font-bold border-b bBaktiBlue'>
+        Dinas KOMINFO Kabupaten
+      </p>
       <Input
         label='Nama'
         segment='dinaskominfokabupaten'
@@ -92,8 +99,9 @@ const SectionCover = () => {
         type='number'
       />
 
-      <p className='m-0 p-0 cBaktiBlue font-bold'>PEMDA</p>
-      <hr style={{ width: "50%", margin: "0px 0px 8px 0px", padding: "0px" }} />
+      <p className='m-0 mb-2 p-0 pb-2 cBaktiBlue font-bold border-b bBaktiBlue'>
+        PEMDA
+      </p>
       <Input
         label='Nama'
         segment='pemda'
@@ -109,8 +117,9 @@ const SectionCover = () => {
         type='number'
       />
 
-      <p className='m-0 p-0 cBaktiBlue font-bold'>Kepala Desa</p>
-      <hr style={{ width: "50%", margin: "0px 0px 8px 0px", padding: "0px" }} />
+      <p className='m-0 mb-2 p-0 pb-2 cBaktiBlue font-bold border-b bBaktiBlue'>
+        Kepala Desa
+      </p>
       <Input
         label='Nama'
         segment='kepaladesa'
@@ -126,8 +135,9 @@ const SectionCover = () => {
         type='number'
       />
 
-      <p className='m-0 p-0 cBaktiBlue font-bold'>Pemilik Lahan</p>
-      <hr style={{ width: "50%", margin: "0px 0px 8px 0px", padding: "0px" }} />
+      <p className='m-0 mb-2 p-0 pb-2 cBaktiBlue font-bold border-b bBaktiBlue'>
+        Pemilik Lahan
+      </p>
       <Input
         label='Nama'
         segment='pemiliklahan'
@@ -142,7 +152,7 @@ const SectionCover = () => {
         value={btsMain?.section1?.notelppemiliklahan}
         type='number'
       />
-      <hr />
+      <hr className='mb-3' />
     </SectionLayout>
   );
 };
