@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // indexDB
-import Localbase from "localbase";
+
+// import Localbase from "localbase";
 // const Localbase = require("localbase");
 
 import { message } from "antd";
@@ -15,7 +16,7 @@ import { checkFormBtsFilled } from "../../helper/checkFormBtsFilled";
 function Save(props) {
   const { simpanDisabled, idSurvey } = props;
   // indexDB
-  // let db = new Localbase("db");
+  let db = new Localbase("db");
   // db.config.debug = false;
   // redux
   const dispatch = useDispatch();
@@ -31,17 +32,17 @@ function Save(props) {
   let strBtsMain = "btsMain";
 
   useEffect(() => {
-    // if (idSurvey !== undefined) {
-    //   db.collection(eval("strBtsMain").concat(idSurvey))
-    //     .get()
-    //     .then((data) => {
-    //       if (data[0]) {
-    //         dispatch(setBtsMain(data[0].btsMain));
-    //       } else {
-    //         destroyBtsForm(dispatch, btsMain, setBtsMain);
-    //       }
-    //     });
-    // }
+    if (idSurvey !== undefined) {
+      db.collection(eval("strBtsMain").concat(idSurvey))
+        .get()
+        .then((data) => {
+          if (data[0]) {
+            dispatch(setBtsMain(data[0].btsMain));
+          } else {
+            destroyBtsForm(dispatch, btsMain, setBtsMain);
+          }
+        });
+    }
   }, []);
 
   useEffect(() => {

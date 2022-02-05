@@ -21,7 +21,7 @@ import Card from "../../components/dashboard/Card";
 import API from "../../services";
 import Dropdown from "../../components/form/Dropdown";
 
-import Localbase from "localbase";
+// import Localbase from "localbase";
 // const Localbase = require("localbase");
 
 // dynamic import (lazy loading nya next.js)
