@@ -13,7 +13,7 @@ import { Form, Select } from "antd";
 import "antd/dist/antd.css";
 
 // import components
-import Layout from "../../components/Layout";
+import Layout from "../../components/Layout/Layout";
 import Card from "../../components/dashboard/Card";
 
 // import api
@@ -28,9 +28,11 @@ const FormPage = () => {
   //states
   const [kodeSurveyList, setKodeSurveyList] = useState([]);
   const [selectedKode, setSelectedKode] = useState("Select Kode Survey");
-  const [selectedFormType, setSelectedFormType] = useState("Select Form Type");
+  const [selectedFormType, setSelectedFormType] = useState("Cover");
   const [section, setSection] = useState([]);
-  const [selectedSection, setSelectedSection] = useState("Select Section");
+  const [selectedSection, setSelectedSection] = useState(
+    "Site Survey Report & Approval"
+  );
 
   const [loading, setloading] = useState(false);
 
@@ -173,8 +175,6 @@ const FormPage = () => {
     }
   }, [selectedFormType]);
 
-  console.log("selected form type ", selectedFormType);
-
   return (
     <Layout title='Form Penugasan'>
       <div className='flex flex-col justify-between p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight pt-24'>
@@ -202,7 +202,7 @@ const FormPage = () => {
           defaultValue={selectedKode}
           setter={setSelectedKode}
           size='large'
-          defaultOpen={true}
+          // defaultOpen={true}
           options={kodeSurveyList}
           value='_id'
           label='kode'
@@ -265,6 +265,7 @@ const FormPage = () => {
         </Select> */}
       </div>
       {selectedSection === "Site Survey Report & Approval" && <SectionCover />}
+      {selectedSection.includes("Section 1 :") && <SectionCover />}
     </Layout>
   );
 };
