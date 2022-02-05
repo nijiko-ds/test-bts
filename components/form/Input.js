@@ -41,7 +41,7 @@ const InputComponent = (props) => {
         <Form.Item
           label={_lable}
           required={required}
-          tooltip='Input harus diisi'
+          tooltip='Harus Diisi'
           validateStatus={message ? "warning" : warning ? "error" : false}
           help={message ?? warning ?? false}
         >
