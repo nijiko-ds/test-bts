@@ -58,57 +58,57 @@ const Dropdown = (props) => {
 
   console.log("changeValue", changeValue);
   return (
-    <Form.Item
-      //   label={label}
-      name='layout'
-      required={required}
-      tooltip='Input harus diisi'
+    // <Form.Item
+    //   //   label={label}
+    //   name="layout"
+    //   required={required}
+    //   tooltip="Input harus diisi"
+    // >
+    <Select
+      showSearch
+      className={className}
+      placeholder={placeholder}
+      optionFilterProp='children'
+      defaultValue={
+        defaultValue ?? btsMain?.[`section${section}`]?.[`${valueToBeSet}`]
+      }
+      value={
+        defaultValue ?? btsMain?.[`section${section}`]?.[`${valueToBeSet}`]
+      }
+      defaultOpen={defaultOpen}
+      onChange={(e) => {
+        onChange(e);
+        console.log(e);
+      }}
+      size={size}
+      onSearch={onSearch}
+      filterOption={(input, option) =>
+        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+      }
     >
-      <Select
-        showSearch
-        className={className}
-        placeholder={placeholder}
-        optionFilterProp='children'
-        defaultValue={
-          defaultValue ?? btsMain?.[`section${section}`]?.[`${valueToBeSet}`]
-        }
-        value={
-          defaultValue ?? btsMain?.[`section${section}`]?.[`${valueToBeSet}`]
-        }
-        defaultOpen={defaultOpen}
-        onChange={(e) => {
-          onChange(e);
-          console.log(e);
-        }}
-        size={size}
-        onSearch={onSearch}
-        filterOption={(input, option) =>
-          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-        }
-      >
-        {withValue !== null || withLabel !== null
-          ? options?.map((e, id) => {
-              return (
-                <Option
-                  key={id}
-                  value={e[`${withValue}`]}
-                  selected={valueRedux === withValue ? true : false}
-                >
-                  {e[`${withLabel}`]}
-                </Option>
-              );
-            })
-          : options?.map((e, id) => (
+      {withValue !== null || withLabel !== null
+        ? options?.map((e, id) => {
+            return (
               <Option
                 key={id}
-                value={e}
+                value={e[`${withValue}`]}
                 selected={valueRedux === withValue ? true : false}
               >
-                {e}
+                {e[`${withLabel}`]}
               </Option>
-            ))}
-      </Select>
-    </Form.Item>
+            );
+          })
+        : options?.map((e, id) => (
+            <Option
+              key={id}
+              value={e}
+              selected={valueRedux === withValue ? true : false}
+            >
+              {e}
+            </Option>
+          ))}
+    </Select>
+    // </Form.Item>
   );
 };
 

@@ -80,11 +80,11 @@ const Image = (props) => {
   };
   return (
     <>
-      <Form form={form} layout='vertical'>
+      <Form form={form} layout="vertical">
         <Form.Item label={label}>
           <Upload
-            action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
-            listType='picture-card'
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture-card"
             fileList={fileList}
             onPreview={handlePreview}
             onChange={handleChange}
@@ -97,7 +97,7 @@ const Image = (props) => {
             footer={null}
             onCancel={handleCancel}
           >
-            <img alt='example' style={{ width: "100%" }} src={previewImage} />
+            <img alt="example" style={{ width: "100%" }} src={previewImage} />
           </Modal>
         </Form.Item>
       </Form>
