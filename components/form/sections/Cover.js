@@ -460,6 +460,147 @@ const Cover = () => {
         section="8"
         valueToBeSet="orientasikemiringanpanelsuryayangoptimal"
       />
+      <label>{`Status Kepemilikan Surat Tanah`}</label>
+      <Dropdown
+        className="w-full"
+        options={["SHM", "Girik/Persil", "Lainnya"]}
+        withValue={null}
+        withLabel={null}
+        section="9"
+        valueToBeSet="statuskepemilikansurattanah"
+      />
+      <label>{`Status Kepemilikan Surat Tanah Lainnya`}</label>
+      <Dropdown
+        className="w-full"
+        options={["Tanah Adat", "Tanah Hibah", "Belum Ada"]}
+        withValue={null}
+        withLabel={null}
+        section="9"
+        valueToBeSet="statuskepemilikansurattanahlainnya"
+      />
+      <label>{`Ijin yang Dibutuhkan`}</label>
+      <Dropdown
+        className="w-full"
+        options={[
+          "Ijin Warga",
+          "Ijin Prinsip",
+          "Khusus (Lingkungan)",
+          "Lainnya",
+        ]}
+        withValue={null}
+        withLabel={null}
+        section="9"
+        valueToBeSet="ijinyangdibutuhkan"
+      />
+      <label>{`Ijin yang Dibutuhkan Lainnya`}</label>
+      <Dropdown
+        className="w-full"
+        options={["INI", "Negara"]}
+        withValue={null}
+        withLabel={null}
+        section="9"
+        valueToBeSet="ijinyangdibutuhkanlainnya"
+      />
+      <label>{`ID Pemilik Lahan`}</label>
+      <Dropdown
+        className="w-full"
+        options={["KTP", "Passport", "KTA (TNI / State)"]}
+        withValue={null}
+        withLabel={null}
+        section="9"
+        valueToBeSet="idpemiliklahan"
+      />
+      <label>{`Kawasan`}</label>
+      <Dropdown
+        className="w-full"
+        options={["Area Peruntukkan Lain (APL)", "Hutan", "Lainnya"]}
+        withValue={null}
+        withLabel={null}
+        section="9"
+        valueToBeSet="kawasan"
+      />
+      <label>{`Distribusi Penduduk`}</label>
+      <Dropdown
+        className="w-full"
+        options={["Terpisah", "Cenderung Berkumpul", "Lainnya"]}
+        withValue={null}
+        withLabel={null}
+        section="10"
+        valueToBeSet="distribusipenduduk"
+      />
+      <label>{`Warga yang dapat dilatih tentang pengoperasian perangkat dasar / Training`}</label>
+      <Dropdown
+        className="w-full"
+        options={["Ada", "Tidak Ada"]}
+        withValue={null}
+        withLabel={null}
+        section="10"
+        valueToBeSet="wargayangdapatdilatihtentangpengoperasianperangkatdasartraining"
+      />
+      <label>{`Akses Internet Non Selular`}</label>
+      <Dropdown
+        className="w-full"
+        options={["Ada", "Tidak Ada"]}
+        withValue={null}
+        withLabel={null}
+        section="10"
+        valueToBeSet="aksesinternetnonselular"
+      />
+      <label>{`Frequency`}</label>
+      <Dropdown
+        className="w-full"
+        options={["6G", "7G", "8G", "11G", "13G", "15G", "23G", "Lainnya"]}
+        withValue={null}
+        withLabel={null}
+        section="22"
+        valueToBeSet="frequency"
+      />
+      <label>{`Konfigurasi`}</label>
+      <Dropdown
+        className="w-full"
+        options={[
+          "1+0",
+          "2+0",
+          "3+0",
+          "4+0",
+          "5+0",
+          "6+0",
+          "7+0",
+          "8+0",
+          "Lainnya",
+        ]}
+        withValue={null}
+        withLabel={null}
+        section="22"
+        valueToBeSet="konfigurasi"
+      />
+      <label>{`Tipe Konfigurasi`}</label>
+      <Dropdown
+        className="w-full"
+        options={[
+          "1+0",
+          "2+0",
+          "3+0",
+          "4+0",
+          "5+0",
+          "6+0",
+          "7+0",
+          "8+0",
+          "Lainnya",
+        ]}
+        withValue={null}
+        withLabel={null}
+        section="22"
+        valueToBeSet="tipekonfigurasi"
+      />
+      <Dropdown
+        className="w-full"
+        options={["0.3", "0.6", "0.9", "1.2", "1.8", "2.4", "Lainnya"]}
+        withValue={null}
+        withLabel={null}
+        section="22"
+        valueToBeSet="tipekonfigurasi"
+      />
     </div>
   );
 };

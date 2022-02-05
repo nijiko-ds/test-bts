@@ -92,7 +92,7 @@ const initialState = {
       jarakutara: "",
       kondisigudangpenyimpanan: "",
       kondisigudangpenyimpananlainnya: "",
-      tipeantenna: "Omni",
+      tipeantenna: "",
       jumlahomni: "",
       azimuthomni: 360,
       unitomni: "",
