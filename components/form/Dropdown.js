@@ -11,13 +11,13 @@ const Dropdown = (props) => {
   const {
     options,
     savedValue,
-    label,
+    withLabel,
     placeholder,
     required,
     setter,
     defaultValue,
     defaultOpen,
-    value,
+    withValue,
     className,
     size,
     section,
@@ -69,8 +69,8 @@ const Dropdown = (props) => {
         className={className}
         placeholder={placeholder}
         optionFilterProp="children"
-        defaultValue={defaultValue}
-        value={btsMain?.[`section${section}`]?.[`${valueToBeSet}`] ?? null}
+        defaultValue={btsMain?.[`section${section}`]?.[`${valueToBeSet}`]}
+        value={btsMain?.[`section${section}`]?.[`${valueToBeSet}`]}
         defaultOpen={defaultOpen}
         onChange={(e) => {
           onChange(e);
@@ -82,14 +82,24 @@ const Dropdown = (props) => {
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
-        {value !== null || label !== null
-          ? options?.map((e, id) => (
-              <Option key={id} value={e[`${value}`]}>
-                {e[`${label}`]}
-              </Option>
-            ))
+        {withValue !== null || withLabel !== null
+          ? options?.map((e, id) => {
+              return (
+                <Option
+                  key={id}
+                  value={e[`${withValue}`]}
+                  selected={valueRedux === withValue ? true : false}
+                >
+                  {e[`${withLabel}`]}
+                </Option>
+              );
+            })
           : options?.map((e, id) => (
-              <Option key={id} value={e}>
+              <Option
+                key={id}
+                value={e}
+                selected={valueRedux === withValue ? true : false}
+              >
                 {e}
               </Option>
             ))}
