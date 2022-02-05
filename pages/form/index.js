@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 // dynamic import (lazy loading nya next.js)
 import dynamic from "next/dynamic";
 
+const Cover = dynamic(() => import("../../components/form/sections/Cover"));
 const SectionCover = dynamic(() =>
   import("../../components/form/sections/SectionCover")
 );
@@ -266,7 +267,9 @@ const FormPage = () => {
           })}
         </Select> */}
       </div>
-      {selectedSection === "Site Survey Report & Approval" && <SectionCover />}
+      {/* {selectedSection === "Site Survey Report & Approval" && <SectionCover />} */}
+      <Cover />
+      <SectionCover />
     </Layout>
   );
 };

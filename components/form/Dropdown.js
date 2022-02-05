@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Select, Form } from "antd";
+import { setBtsMain } from "../../slices/formbts";
 
 const Dropdown = (props) => {
+  const dispatch = useDispatch();
+  const btsMain = useSelector((state) => state.formbts.btsMain);
   const { Option } = Select;
   const {
     options,
@@ -14,18 +19,20 @@ const Dropdown = (props) => {
     value,
     className,
     size,
+    section,
+    valueToBeSet,
   } = props;
 
   const [changeValue, setChangeValue] = useState("");
   const [changeSearch, setChangeSearch] = useState("");
 
   const [form] = Form.useForm();
+  let valueRedux = btsMain?.[`section${section}`]?.[`${valueToBeSet}`] ?? null;
 
   function onChange(e) {
     console.log(`selected ${e}`);
-    // setChangeValue(value);
     // setState(value);
-    setter(e);
+    setter !== undefined ? setter(e) : setChangeValue(e);
   }
 
   function onSearch(val) {
@@ -33,10 +40,22 @@ const Dropdown = (props) => {
     setChangeSearch(val);
   }
 
+  console.log("redux yang lg terpanggil ", valueRedux ?? null);
+  // set ke redux kl changeValue berubah
   useEffect(() => {
-    window.localStorage.setItem(`${savedValue}`, changeValue);
+    dispatch(
+      setBtsMain({
+        ...btsMain,
+        ["section" + `${section}`]: {
+          ...btsMain["section" + `${section}`],
+          [`${valueToBeSet}`]: `${changeValue}`,
+        },
+      })
+    );
+    // setChangeValue(btsMain?.[`section${section}`]?.[`${valueToBeSet}`]);
   }, [changeValue, changeSearch]);
-  console.log("options", options);
+
+  console.log("changeValue", changeValue);
   return (
     <Form.Item
       //   label={label}
@@ -50,6 +69,7 @@ const Dropdown = (props) => {
         placeholder={placeholder}
         optionFilterProp="children"
         defaultValue={defaultValue}
+        value={btsMain?.[`section${section}`]?.[`${valueToBeSet}`] ?? null}
         onChange={(e) => onChange(e)}
         size={size}
         onSearch={onSearch}
