@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import Head from "next/head";
 
-import style from "../styles/mobile.module.css";
+import style from "../../styles/mobile.module.css";
 // import components
-import NavigationBar from "./navigationBar/NavigationBar";
+import NavigationBar from "../navigationBar/NavigationBar";
 
 const Layout = ({ title, children }) => {
   // ketika scroll header ada shadow
@@ -53,7 +53,7 @@ const Layout = ({ title, children }) => {
       </header>
 
       <main
-        className='mb-auto h-full overflow-auto no-scrollbar pb-56'
+        className='mb-auto h-full overflow-auto no-scrollbar pb-36'
         onScroll={(e) => handleScroll(e)}
       >
         {children}
