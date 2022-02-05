@@ -3,19 +3,29 @@ import { Select, Form } from "antd";
 
 const Dropdown = (props) => {
   const { Option } = Select;
-  const { options, savedValue, label, placeholder, required, value, setState } =
-    props;
+  const {
+    options,
+    savedValue,
+    label,
+    placeholder,
+    required,
+    setter,
+    defaultValue,
+    value,
+    className,
+    size,
+  } = props;
 
   const [changeValue, setChangeValue] = useState("");
   const [changeSearch, setChangeSearch] = useState("");
-  const [defaultValyu, setDefaultValyu] = useState("female");
 
   const [form] = Form.useForm();
 
-  function onChange(value) {
-    console.log(`selected ${value}`);
-    setChangeValue(value);
-    setState(value);
+  function onChange(e) {
+    console.log(`selected ${e}`);
+    // setChangeValue(value);
+    // setState(value);
+    setter(e);
   }
 
   function onSearch(val) {
@@ -26,28 +36,38 @@ const Dropdown = (props) => {
   useEffect(() => {
     window.localStorage.setItem(`${savedValue}`, changeValue);
   }, [changeValue, changeSearch]);
-  console.log("defaultvalue", props.value);
+  console.log("options", options);
   return (
     <Form.Item
-      label={label}
-      name='layout'
+      //   label={label}
+      name="layout"
       required={required}
-      tooltip='Input harus diisi'
+      tooltip="Input harus diisi"
     >
       <Select
         showSearch
+        className={className}
         placeholder={placeholder}
-        optionFilterProp='children'
-        defaultValue={props.value}
-        onChange={onChange}
+        optionFilterProp="children"
+        defaultValue={defaultValue}
+        onChange={(e) => onChange(e)}
+        size={size}
         onSearch={onSearch}
         filterOption={(input, option) =>
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
-        {options.map((e) => (
-          <Option value={e?.value}>{e?.label}</Option>
-        ))}
+        {value !== null || label !== null
+          ? options?.map((e, id) => (
+              <Option key={id} value={e[`${value}`]}>
+                {e[`${label}`]}
+              </Option>
+            ))
+          : options?.map((e, id) => (
+              <Option key={id} value={e}>
+                {e}
+              </Option>
+            ))}
       </Select>
     </Form.Item>
   );

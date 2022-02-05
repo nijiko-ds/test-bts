@@ -18,6 +18,7 @@ import Card from "../../components/dashboard/Card";
 
 // import api
 import API from "../../services";
+import Dropdown from "../../components/form/Dropdown";
 
 const FormPage = () => {
   const { Option } = Select;
@@ -172,17 +173,19 @@ const FormPage = () => {
     }
   }, [selectedFormType]);
 
+  console.log("selected form type ", selectedFormType);
+
   return (
-    <Layout title='Form Penugasan'>
-      <div className='flex flex-col justify-between gap-2 p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight'>
+    <Layout title="Form Penugasan">
+      <div className="flex flex-col justify-between gap-2 p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight">
         <label>Kode Survey</label>
-        <Select
-          className='w-full'
-          placeholder='Select Kode Survey'
-          optionFilterProp='children'
+        {/* <Select
+          className="w-full"
+          placeholder="Select Kode Survey"
+          optionFilterProp="children"
           defaultValue={selectedKode}
           onChange={(e) => setSelectedFormType(e)}
-          size='large'
+          size="large"
           defaultOpen={true}
         >
           {kodeSurveyList?.map((d, i) => {
@@ -192,16 +195,38 @@ const FormPage = () => {
               </Option>
             );
           })}
-        </Select>
+        </Select> */}
+        <Dropdown
+          className="w-full"
+          placeholder="Select Kode Survey"
+          defaultValue={selectedKode}
+          setter={setSelectedKode}
+          size="large"
+          defaultOpen={true}
+          options={kodeSurveyList}
+          value="_id"
+          label="kode"
+        />
         {/* ====================================== */}
         <label>Select Form Type</label>
-        <Select
-          className='w-full'
-          placeholder='Select Form Type'
-          optionFilterProp='children'
+        <Dropdown
+          className="w-full"
+          placeholder="Select Form Type"
+          defaultValue={selectedFormType}
+          setter={setSelectedFormType}
+          size="large"
+          defaultOpen={true}
+          options={formTypes}
+          value={null}
+          label={null}
+        />
+        {/* <Select
+          className="w-full"
+          placeholder="Select Form Type"
+          optionFilterProp="children"
           defaultValue={selectedFormType}
           onChange={(e) => setSelectedFormType(e)}
-          size='large'
+          size="large"
         >
           {formTypes.map((d, i) => {
             return (
@@ -210,16 +235,27 @@ const FormPage = () => {
               </Option>
             );
           })}
-        </Select>
+        </Select> */}
         {/* ====================================== */}
         <label>Select Section</label>
-        <Select
-          className='w-full'
-          placeholder='Select Section'
-          optionFilterProp='children'
+        <Dropdown
+          className="w-full"
+          placeholder="Select Form Type"
+          defaultValue={selectedSection}
+          setter={setSelectedSection}
+          size="large"
+          defaultOpen={true}
+          options={section}
+          value={null}
+          label={null}
+        />
+        {/* <Select
+          className="w-full"
+          placeholder="Select Section"
+          optionFilterProp="children"
           defaultValue={selectedSection}
           onChange={(e) => setSelectedFormType(e)}
-          size='large'
+          size="large"
         >
           {section.map((d, i) => {
             return (
@@ -228,10 +264,9 @@ const FormPage = () => {
               </Option>
             );
           })}
-        </Select>
+        </Select> */}
       </div>
-
-      <SectionCover />
+      {selectedSection === "Site Survey Report & Approval" && <SectionCover />}
     </Layout>
   );
 };
