@@ -51,7 +51,10 @@ const Dropdown = (props) => {
         optionFilterProp='children'
         defaultValue={defaultValue}
         defaultOpen={defaultOpen}
-        onChange={(e) => onChange(e)}
+        onChange={(e) => {
+          onChange(e);
+          console.log(e);
+        }}
         size={size}
         onSearch={onSearch}
         filterOption={(input, option) =>

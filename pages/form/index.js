@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-// dynamic import (lazy loading nya next.js)
 import dynamic from "next/dynamic";
 
-const SectionCover = dynamic(() =>
-  import("../../components/form/sections/SectionCover")
-);
-const Section1 = dynamic(() =>
-  import("../../components/form/sections/Section1")
-);
-// import SectionCover from "../../components/form/sections/SectionCover";
+// import redux
+import { setBtsMain } from "../../slices/formbts";
+import { setFormFilled } from "../../slices/formfilled";
+import { destroyBtsForm } from "../../helper/destroyBtsForm";
+import { checkFormBtsFilled } from "../../helper/checkFormBtsFilled";
 
 // styling
 import { Form, Select } from "antd";
@@ -23,6 +21,16 @@ import Card from "../../components/dashboard/Card";
 import API from "../../services";
 import Dropdown from "../../components/form/Dropdown";
 
+import Localbase from "localbase";
+
+// dynamic import (lazy loading nya next.js)
+const SectionCover = dynamic(() =>
+  import("../../components/form/sections/SectionCover")
+);
+const Section1 = dynamic(() =>
+  import("../../components/form/sections/Section1")
+);
+
 const FormPage = () => {
   const { Option } = Select;
   const [form] = Form.useForm();
@@ -30,6 +38,15 @@ const FormPage = () => {
   const router = useRouter();
   const { _id } = router.query;
   console.log("_____id", _id);
+
+  let db = new Localbase("db");
+  db.config.debug = false;
+  // section strings
+  let strBtsMain = "btsMain";
+
+  const dispatch = useDispatch();
+  const btsMain = useSelector((state) => state.formbts.btsMain);
+
   //states
   const [kodeSurveyList, setKodeSurveyList] = useState([]);
   const [selectedKode, setSelectedKode] = useState(_id ?? "Select Kode Survey");
@@ -151,6 +168,16 @@ const FormPage = () => {
 
     if (_id !== undefined) {
       setSelectedKode(_id);
+
+      db.collection(eval("strBtsMain").concat(_id))
+        .get()
+        .then((data) => {
+          if (data[0]) {
+            dispatch(setBtsMain(data[0].btsMain));
+          } else {
+            destroyBtsForm(dispatch, btsMain, setBtsMain);
+          }
+        });
     }
   }, []);
 
@@ -274,9 +301,19 @@ const FormPage = () => {
         </Select> */}
       </div>
       {selectedSection === sections[0][0] && (
-        <SectionCover t={sections[0][0]} />
+        <SectionCover
+          t={sections[0][0]}
+          idSurvey={_id !== undefined ? _id : selectedKode}
+          kodeSurvey={selectedKode}
+        />
       )}
-      {selectedSection === sections[1][0] && <Section1 t={sections[1][0]} />}
+      {selectedSection === sections[1][0] && (
+        <Section1
+          t={sections[1][0]}
+          idSurvey={_id !== undefined ? _id : selectedKode}
+          kodeSurvey={selectedKode}
+        />
+      )}
     </Layout>
   );
 };

@@ -4,10 +4,10 @@ import SectionLayout from "../../Layout/SectionLayout";
 
 import Input from "../Input";
 import _ from "lodash";
-const Section1 = ({ t }) => {
+const Section1 = ({ t, idSurvey, kodeSurvey }) => {
   const btsMain = useSelector((state) => state.formbts.btsMain);
   return (
-    <SectionLayout title={t}>
+    <SectionLayout title={t} idSurvey={idSurvey} kodeSurvey={kodeSurvey}>
       {/* ================= MIGRASI DARI SECTION 1 (SHEET HEAD ON SSR) */}
       <div className='border border-gray-300 rounded p-4 mb-3'>
         <h5>Informasi Survey</h5>
