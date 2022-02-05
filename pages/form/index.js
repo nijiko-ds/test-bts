@@ -170,15 +170,15 @@ const FormPage = () => {
     if (_id !== undefined && _id !== "Select Kode Survey") {
       setSelectedKode(_id);
 
-      db.collection(eval("strBtsMain").concat(_id))
-        .get()
-        .then((data) => {
-          if (data[0]) {
-            dispatch(setBtsMain(data[0].btsMain));
-          } else {
-            destroyBtsForm(dispatch, btsMain, setBtsMain);
-          }
-        });
+      // db.collection(eval("strBtsMain").concat(_id))
+      //   .get()
+      //   .then((data) => {
+      //     if (data[0]) {
+      //       dispatch(setBtsMain(data[0].btsMain));
+      //     } else {
+      //       destroyBtsForm(dispatch, btsMain, setBtsMain);
+      //     }
+      //   });
     }
   }, []);
 
