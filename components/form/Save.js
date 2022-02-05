@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // indexDB
 import Localbase from "localbase";
+// const Localbase = require("localbase");
 
 import { message } from "antd";
 
@@ -78,6 +79,10 @@ function Save(props) {
           }
           message.success("Sukses menyimpan data form");
         });
+    } else {
+      message.error(
+        'Gagal simpan data. Silahkan isi "Kode Survey" Terlebih Dahulu!'
+      );
     }
   };
 

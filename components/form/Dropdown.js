@@ -68,9 +68,13 @@ const Dropdown = (props) => {
       showSearch
       className={className}
       placeholder={placeholder}
-      optionFilterProp="children"
-      defaultValue={btsMain?.[`section${section}`]?.[`${valueToBeSet}`]}
-      value={btsMain?.[`section${section}`]?.[`${valueToBeSet}`]}
+      optionFilterProp='children'
+      defaultValue={
+        defaultValue ?? btsMain?.[`section${section}`]?.[`${valueToBeSet}`]
+      }
+      value={
+        defaultValue ?? btsMain?.[`section${section}`]?.[`${valueToBeSet}`]
+      }
       defaultOpen={defaultOpen}
       onChange={(e) => {
         onChange(e);
