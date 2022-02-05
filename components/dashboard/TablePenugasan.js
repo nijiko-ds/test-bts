@@ -84,7 +84,13 @@ const TablePenugasan = () => {
         tableData?.map((data, i) => {
           let bgColor = i % 2 === 0 ? "bg-white" : "bg-slate-100";
           return (
-            <Link key={i} href={`/form/${data?._id}` ?? "/#"}>
+            <Link
+              key={i}
+              href={{
+                pathname: `/form`,
+                query: { _id: data?._id },
+              }}
+            >
               <div
                 key={i}
                 className={`flexboxRowStart px-4 ${bgColor} justify-center`}
