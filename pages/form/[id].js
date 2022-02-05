@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Form, Button } from "antd";
 import "antd/dist/antd.css";
 
-import Layout from "../../components/Layout";
+import Layout from "../../components/Layout/Layout";
 import Input from "../../components/form/Input";
 // import Dropdown from "../../components/form/Dropdown";
 // import Date from "../../components/form/Date";
