@@ -1,27 +1,25 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Radio } from "antd";
+import { Form, Input } from "antd";
 
 // styling
 import "antd/dist/antd.css";
 
 const InputComponent = (props) => {
-  const [form] = Form.useForm();
+  const { label, required, setState, value, type, satuan } = props;
 
   return (
     <div>
-      <Form.Item
-        label={props.label}
-        required={props.required}
-        tooltip='Input harus diisi'
-      >
+      <Form.Item label={label} required={required} tooltip='Input harus diisi'>
         <Input
           placeholder='input placeholder'
-          onChange={(e) => props.setState(e.target.value)}
-          value={props.value}
-          type={props.type}
+          onChange={(e) => setState(e.target.value)}
+          value={value}
+          type={type}
           onKeyDown={(e) =>
-            props.type === "number" && e.key === "e" && e.preventDefault()
+            type === "number" && e.key === "e" && e.preventDefault()
           }
+          size='large'
+          addonAfter={satuan}
         />
       </Form.Item>
     </div>
