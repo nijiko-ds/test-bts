@@ -23,11 +23,10 @@ const Cover = () => {
       <Dropdown
         className="w-full"
         options={["Omni", "Sectoral"]}
-        // value={null}
+        value={null}
         label={null}
         section="2"
         valueToBeSet="tipeantenna"
-        value={btsMain?.section2?.tipeantenna}
         defaultValue={btsMain?.section2?.tipeantenna}
       />
       <label>Status Site</label>
@@ -100,7 +99,7 @@ const Cover = () => {
       <Dropdown
         className="w-full"
         options={["Omni", "Sectoral"]}
-        // value={null}
+        value={null}
         label={null}
         section="2"
         valueToBeSet="tipeantenna"

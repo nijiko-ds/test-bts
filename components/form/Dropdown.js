@@ -70,7 +70,7 @@ const Dropdown = (props) => {
         placeholder={placeholder}
         optionFilterProp="children"
         defaultValue={defaultValue}
-        value={btsMain?.[`section${section}`]?.[`${valueToBeSet}`] ?? null}
+        value={defaultValue}
         defaultOpen={defaultOpen}
         onChange={(e) => onChange(e)}
         size={size}
