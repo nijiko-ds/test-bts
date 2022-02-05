@@ -46,6 +46,7 @@ const InputComponent = (props) => {
           help={message ?? warning ?? false}
         >
           <Input
+            allowClear={true}
             placeholder={placeholder ?? label}
             onChange={(e) => {
               console.log(
