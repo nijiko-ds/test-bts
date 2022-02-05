@@ -5,10 +5,10 @@ import SectionLayout from "../../Layout/SectionLayout";
 import Input from "../Input";
 import LatitudeLongitude from "../LongitudeLatitude";
 
-const SectionCover = ({ t }) => {
+const SectionCover = ({ t, idSurvey, kodeSurvey }) => {
   const btsMain = useSelector((state) => state.formbts.btsMain);
   return (
-    <SectionLayout title={t}>
+    <SectionLayout title={t} idSurvey={idSurvey} kodeSurvey={kodeSurvey}>
       <Input
         label='Site ID'
         section='1'

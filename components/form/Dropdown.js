@@ -72,7 +72,10 @@ const Dropdown = (props) => {
         defaultValue={defaultValue}
         value={btsMain?.[`section${section}`]?.[`${valueToBeSet}`] ?? null}
         defaultOpen={defaultOpen}
-        onChange={(e) => onChange(e)}
+        onChange={(e) => {
+          onChange(e);
+          console.log(e);
+        }}
         size={size}
         onSearch={onSearch}
         filterOption={(input, option) =>

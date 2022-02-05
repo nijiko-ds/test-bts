@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-// dynamic import (lazy loading nya next.js)
 import dynamic from "next/dynamic";
 
-const Cover = dynamic(() => import("../../components/form/sections/Cover"));
-const SectionCover = dynamic(() =>
-  import("../../components/form/sections/SectionCover")
-);
-const Section1 = dynamic(() =>
-  import("../../components/form/sections/Section1")
-);
-// import SectionCover from "../../components/form/sections/SectionCover";
+// import redux
+import { setBtsMain } from "../../slices/formbts";
+import { setFormFilled } from "../../slices/formfilled";
+import { destroyBtsForm } from "../../helper/destroyBtsForm";
+import { checkFormBtsFilled } from "../../helper/checkFormBtsFilled";
 
 // styling
 import { Form, Select } from "antd";
@@ -24,6 +21,17 @@ import Card from "../../components/dashboard/Card";
 import API from "../../services";
 import Dropdown from "../../components/form/Dropdown";
 
+import Localbase from "localbase";
+
+// dynamic import (lazy loading nya next.js)
+const Cover = dynamic(() => import("../../components/form/sections/Cover"));
+const SectionCover = dynamic(() =>
+  import("../../components/form/sections/SectionCover")
+);
+const Section1 = dynamic(() =>
+  import("../../components/form/sections/Section1")
+);
+
 const FormPage = () => {
   const { Option } = Select;
   const [form] = Form.useForm();
@@ -31,6 +39,15 @@ const FormPage = () => {
   const router = useRouter();
   const { _id } = router.query;
   console.log("_____id", _id);
+
+  let db = new Localbase("db");
+  db.config.debug = false;
+  // section strings
+  let strBtsMain = "btsMain";
+
+  const dispatch = useDispatch();
+  const btsMain = useSelector((state) => state.formbts.btsMain);
+
   //states
   const [kodeSurveyList, setKodeSurveyList] = useState([]);
   const [selectedKode, setSelectedKode] = useState(_id ?? "Select Kode Survey");
@@ -152,6 +169,16 @@ const FormPage = () => {
 
     if (_id !== undefined) {
       setSelectedKode(_id);
+
+      db.collection(eval("strBtsMain").concat(_id))
+        .get()
+        .then((data) => {
+          if (data[0]) {
+            dispatch(setBtsMain(data[0].btsMain));
+          } else {
+            destroyBtsForm(dispatch, btsMain, setBtsMain);
+          }
+        });
     }
   }, []);
 
@@ -186,8 +213,8 @@ const FormPage = () => {
   }, [selectedFormType]);
 
   return (
-    <Layout title="Form Penugasan">
-      <div className="flex flex-col justify-between p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight pt-24">
+    <Layout title='Form Penugasan'>
+      <div className='flex flex-col justify-between p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight pt-24'>
         <label>Kode Survey</label>
         {/* <Select
           className="w-full"
@@ -207,24 +234,24 @@ const FormPage = () => {
           })}
         </Select> */}
         <Dropdown
-          className="w-full"
-          placeholder="Select Kode Survey"
+          className='w-full'
+          placeholder='Select Kode Survey'
           defaultValue={selectedKode}
           setter={setSelectedKode}
-          size="large"
+          size='large'
           // defaultOpen={true}
           options={kodeSurveyList}
-          value="_id"
-          label="kode"
+          value='_id'
+          label='kode'
         />
         {/* ====================================== */}
         <label>Select Form Type</label>
         <Dropdown
-          className="w-full"
-          placeholder="Select Form Type"
+          className='w-full'
+          placeholder='Select Form Type'
           defaultValue={selectedFormType}
           setter={setSelectedFormType}
-          size="large"
+          size='large'
           options={formTypes}
           value={null}
           label={null}
@@ -248,11 +275,11 @@ const FormPage = () => {
         {/* ====================================== */}
         <label>Select Section</label>
         <Dropdown
-          className="w-full"
-          placeholder="Select Form Type"
+          className='w-full'
+          placeholder='Select Form Type'
           defaultValue={selectedSection}
           setter={setSelectedSection}
-          size="large"
+          size='large'
           options={section}
           value={null}
           label={null}
@@ -277,9 +304,19 @@ const FormPage = () => {
       {/* {selectedSection === "Site Survey Report & Approval" && <SectionCover />} */}
       <Cover />
       {selectedSection === sections[0][0] && (
-        <SectionCover t={sections[0][0]} />
+        <SectionCover
+          t={sections[0][0]}
+          idSurvey={_id !== undefined ? _id : selectedKode}
+          kodeSurvey={selectedKode}
+        />
       )}
-      {selectedSection === sections[1][0] && <Section1 t={sections[1][0]} />}
+      {selectedSection === sections[1][0] && (
+        <Section1
+          t={sections[1][0]}
+          idSurvey={_id !== undefined ? _id : selectedKode}
+          kodeSurvey={selectedKode}
+        />
+      )}
     </Layout>
   );
 };
