@@ -108,6 +108,10 @@
   color: powderblue;
 }
 
+.cBi2 {
+  color: dodgerblue;
+}
+
 .cNi {
   color: lavender;
 }
@@ -126,6 +130,14 @@
 
 .cBaktiBlue {
   color: var(--baktiblue) !important;
+}
+
+.bBaktiBlue {
+  border-color: var(--baktiblue) !important;
+}
+
+.cBaktiBlue2 {
+  color: var(--baktiblue2) !important;
 }
 
 .cBaktiBlueGrey {
