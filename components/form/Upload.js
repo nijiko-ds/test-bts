@@ -221,13 +221,13 @@ const UploadComponent = (props) => {
 
   return (
     <div>
-      <div class='grid grid-cols-1 my-5'>
-        <label class='text-light  mb-3'>{label}</label>
-        <div class='flex items-center justify-center w-full'>
-          <label class='flex flex-col border-4 border-dashed w-full h-32 hover:bg-gray-100 hover:border-sky-300 group'>
-            <div class='flex flex-col items-center justify-center pt-7'>
+      <div className='grid grid-cols-1 my-5'>
+        <label className='text-light  mb-3'>{label}</label>
+        <div className='flex items-center justify-center w-full'>
+          <label className='flex flex-col border-4 border-dashed w-full h-32 hover:bg-gray-100 hover:border-sky-300 group'>
+            <div className='flex flex-col items-center justify-center pt-7'>
               <svg
-                class='w-10 h-10 text-sky-400 group-hover:text-sky-600'
+                className='w-10 h-10 text-sky-400 group-hover:text-sky-600'
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
@@ -240,13 +240,13 @@ const UploadComponent = (props) => {
                   d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'
                 ></path>
               </svg>
-              <p class='uppercase text-sm text-gray-400 group-hover:text-sky-600 pt-1 tracking-wider'>
+              <p className='uppercase text-sm text-gray-400 group-hover:text-sky-600 pt-1 tracking-wider'>
                 Upload
               </p>
             </div>
-            {/* <input type='file' class='hidden' /> */}
+            {/* <input type='file' className='hidden' /> */}
             <input
-              class='hidden'
+              className='hidden'
               type='file'
               name={name ?? "doc"}
               // onChange={(e) => handleChange(e)}
