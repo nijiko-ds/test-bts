@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 
 // import redux
 import { setBtsMain } from "../../slices/formbts";
-import { setFormFilled } from "../../slices/formfilled";
 import { destroyBtsForm } from "../../helper/destroyBtsForm";
 import { checkFormBtsFilled } from "../../helper/checkFormBtsFilled";
 
@@ -26,6 +25,7 @@ import Localbase from "../../helper/localbase";
 
 // dynamic import (lazy loading nya next.js)
 const Cover = dynamic(() => import("../../components/form/sections/Cover"));
+
 const SectionCover = dynamic(() =>
   import("../../components/form/sections/SectionCover")
 );
@@ -183,6 +183,23 @@ const FormPage = () => {
   }, []);
 
   useEffect(() => {
+    // ========== NOTE : ini kode supaya kalau kode survey terpilih, akan cari database dulu supaya bisa di dispatch
+    if (selectedKode.includes(" ") || selectedKode === "") {
+      console.log("Jangan setSelectedKode dengan data salah");
+    } else {
+      db.collection(eval("strBtsMain").concat(selectedKode))
+        .get()
+        .then((data) => {
+          if (data[0]) {
+            dispatch(setBtsMain(data[0].btsMain));
+          } else {
+            destroyBtsForm(dispatch, btsMain, setBtsMain);
+          }
+        });
+    }
+  }, [selectedKode]);
+
+  useEffect(() => {
     switch (selectedFormType) {
       case "Cover":
         setSection(sections[0]);
@@ -216,23 +233,6 @@ const FormPage = () => {
     <Layout title='Form Penugasan'>
       <div className='flex flex-col justify-between p-4 pb-10 shadowBaktiBottom rounded-b-3xl bgBaktiBlueLight pt-24'>
         <label>Kode Survey</label>
-        {/* <Select
-          className="w-full"
-          placeholder="Select Kode Survey"
-          optionFilterProp="children"
-          defaultValue={selectedKode}
-          onChange={(e) => setSelectedFormType(e)}
-          size="large"
-          defaultOpen={true}
-        >
-          {kodeSurveyList?.map((d, i) => {
-            return (
-              <Option value={d?.kode} key={i}>
-                {d?.kode}
-              </Option>
-            );
-          })}
-        </Select> */}
         <Dropdown
           className='w-full'
           placeholder='Select Kode Survey'
@@ -256,22 +256,7 @@ const FormPage = () => {
           withValue={null}
           withLabel={null}
         />
-        {/* <Select
-          className="w-full"
-          placeholder="Select Form Type"
-          optionFilterProp="children"
-          defaultValue={selectedFormType}
-          onChange={(e) => setSelectedFormType(e)}
-          size="large"
-        >
-          {formTypes.map((d, i) => {
-            return (
-              <Option value={d} key={i}>
-                {d}
-              </Option>
-            );
-          })}
-        </Select> */}
+
         {/* ====================================== */}
         <label>Select Section</label>
         <Dropdown
@@ -284,25 +269,10 @@ const FormPage = () => {
           withValue={null}
           withLabel={null}
         />
-        {/* <Select
-          className="w-full"
-          placeholder="Select Section"
-          optionFilterProp="children"
-          defaultValue={selectedSection}
-          onChange={(e) => setSelectedFormType(e)}
-          size="large"
-        >
-          {section.map((d, i) => {
-            return (
-              <Option value={d} key={i}>
-                {d}
-              </Option>
-            );
-          })}
-        </Select> */}
       </div>
       {/* {selectedSection === "Site Survey Report & Approval" && <SectionCover />} */}
-      <Cover />
+
+      {/* <Cover /> */}
       {selectedSection === sections[0][0] && (
         <SectionCover
           t={sections[0][0]}
