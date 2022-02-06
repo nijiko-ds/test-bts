@@ -41,7 +41,7 @@ const Dropdown = (props) => {
     setChangeSearch(val);
   }
 
-  console.log("redux yang lg terpanggil ", valueRedux ?? null);
+  // console.log("redux yang lg terpanggil ", valueRedux ?? null);
   // set ke redux kl changeValue berubah
   useEffect(() => {
     dispatch(
@@ -56,7 +56,7 @@ const Dropdown = (props) => {
     // setChangeValue(btsMain?.[`section${section}`]?.[`${valueToBeSet}`]);
   }, [changeValue, changeSearch]);
 
-  console.log("changeValue", changeValue);
+  // console.log("changeValue", changeValue);
   return (
     // <Form.Item
     //   //   label={label}
