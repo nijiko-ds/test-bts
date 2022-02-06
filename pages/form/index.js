@@ -21,7 +21,7 @@ import Card from "../../components/dashboard/Card";
 import API from "../../services";
 import Dropdown from "../../components/form/Dropdown";
 
-// import Localbase from "localbase";
+import Localbase from "../../helper/localbase";
 // const Localbase = require("localbase");
 
 // dynamic import (lazy loading nya next.js)
@@ -40,8 +40,8 @@ const FormPage = () => {
   const router = useRouter();
   const { _id } = router.query;
 
-  // let db = new Localbase("db");
-  // db.config.debug = false;
+  let db = new Localbase("db");
+  db.config.debug = false;
   // section strings
   let strBtsMain = "btsMain";
 
@@ -170,15 +170,15 @@ const FormPage = () => {
     if (_id !== undefined && _id !== "Select Kode Survey") {
       setSelectedKode(_id);
 
-      // db.collection(eval("strBtsMain").concat(_id))
-      //   .get()
-      //   .then((data) => {
-      //     if (data[0]) {
-      //       dispatch(setBtsMain(data[0].btsMain));
-      //     } else {
-      //       destroyBtsForm(dispatch, btsMain, setBtsMain);
-      //     }
-      //   });
+      db.collection(eval("strBtsMain").concat(_id))
+        .get()
+        .then((data) => {
+          if (data[0]) {
+            dispatch(setBtsMain(data[0].btsMain));
+          } else {
+            destroyBtsForm(dispatch, btsMain, setBtsMain);
+          }
+        });
     }
   }, []);
 

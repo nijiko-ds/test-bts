@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // indexDB
 
-// import Localbase from "localbase";
-// const Localbase = require("localbase");
+import Localbase from "../../helper/localbase";
 
 import { message } from "antd";
 
@@ -17,7 +16,6 @@ function Save(props) {
   const { simpanDisabled, idSurvey } = props;
   // indexDB
   let db = new Localbase("db");
-  // db.config.debug = false;
   // redux
   const dispatch = useDispatch();
   const btsMain = useSelector((state) => state.formbts.btsMain);
@@ -59,33 +57,33 @@ function Save(props) {
     }
   }, [btsMain]);
 
-  // const handleSimpanLocalStorage = () => {
-  //   console.log("huh? ", idSurvey);
-  //   if (idSurvey !== undefined) {
-  //     db.collection(eval("strBtsMain").concat(idSurvey))
-  //       .get()
-  //       .then((data) => {
-  //         if (data.length === 0) {
-  //           db.collection(eval("strBtsMain").concat(idSurvey)).add({
-  //             id: 0,
-  //             btsMain: btsMain,
-  //           });
-  //         } else {
-  //           db.collection(eval("strBtsMain").concat(idSurvey))
-  //             .doc({ id: 0 })
-  //             .set({
-  //               id: 0,
-  //               btsMain: btsMain,
-  //             });
-  //         }
-  //         message.success("Sukses menyimpan data form");
-  //       });
-  //   } else {
-  //     message.error(
-  //       'Gagal simpan data. Silahkan isi "Kode Survey" Terlebih Dahulu!'
-  //     );
-  //   }
-  // };
+  const handleSimpanLocalStorage = () => {
+    console.log("huh? ", idSurvey);
+    if (idSurvey !== undefined) {
+      db.collection(eval("strBtsMain").concat(idSurvey))
+        .get()
+        .then((data) => {
+          if (data.length === 0) {
+            db.collection(eval("strBtsMain").concat(idSurvey)).add({
+              id: 0,
+              btsMain: btsMain,
+            });
+          } else {
+            db.collection(eval("strBtsMain").concat(idSurvey))
+              .doc({ id: 0 })
+              .set({
+                id: 0,
+                btsMain: btsMain,
+              });
+          }
+          message.success("Sukses menyimpan data form");
+        });
+    } else {
+      message.error(
+        'Gagal simpan data. Silahkan isi "Kode Survey" Terlebih Dahulu!'
+      );
+    }
+  };
 
   return (
     <div className='flexboxRowCenter my-10'>
@@ -94,7 +92,7 @@ function Save(props) {
         className={`px-4 py-2 bgBaktiBlue rounded cW w-6/12`}
         onClick={() => {
           console.log("clicked");
-          // handleSimpanLocalStorage();
+          handleSimpanLocalStorage();
           checkFormBtsFilled(
             dispatch,
             formFilled,
