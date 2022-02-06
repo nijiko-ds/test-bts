@@ -104,9 +104,9 @@ const InputComponent = (props) => {
             addonAfter={satuan}
             disabled={disabled}
           />
-          {asterisk && <p className={`cBi2 pt-2`}>* {asterisk}</p>}
+          {asterisk && <p className={`cInfo pt-2`}>* {asterisk}</p>}
 
-          {asterisk2 && <p className={`cBi2 pt-2`}>* {asterisk2}</p>}
+          {asterisk2 && <p className={`cInfo pt-2`}>* {asterisk2}</p>}
           {link && (
             <a className={``} href={link} target='_blank'>
               {link}
