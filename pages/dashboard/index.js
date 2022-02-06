@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
 // styling
 import "antd/dist/antd.css";
 
@@ -11,7 +11,13 @@ import Card from "../../components/dashboard/Card";
 import API from "../../services";
 import TablePenugasan from "../../components/dashboard/TablePenugasan";
 
+import { setBtsMain } from "../../slices/formbts";
+import { destroyBtsForm } from "../../helper/destroyBtsForm";
+
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const btsMain = useSelector((state) => state.formbts.btsMain);
+
   const [permintaanBTS, setPermintaanBTS] = useState("");
   const [dilakukanBTS, setDilakukanBTS] = useState("");
   const [loadingCard, setloadingCard] = useState(false);
@@ -75,6 +81,7 @@ const Dashboard = () => {
   useEffect(() => {
     getPermintaanBTS();
     getDilakukanBTS();
+    destroyBtsForm(dispatch, btsMain, setBtsMain);
   }, []);
 
   return (
