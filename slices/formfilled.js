@@ -4,8 +4,8 @@ const initialState = {
   formFilled: false,
 };
 
-export const formfilledSlice = createSlice({
-  name: "formfilled",
+export const formFilledSlice = createSlice({
+  name: "formFilled",
   initialState,
   reducers: {
     setFormFilled: (state, action) => ({
@@ -15,5 +15,5 @@ export const formfilledSlice = createSlice({
   },
 });
 
-export const { setFormFilled } = formfilledSlice.actions;
-export default formfilledSlice.reducer;
+export const { setFormFilled } = formFilledSlice.actions;
+export default formFilledSlice.reducer;
