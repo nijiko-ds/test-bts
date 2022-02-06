@@ -3,12 +3,15 @@ import { useSelector } from "react-redux";
 import SectionLayout from "../../Layout/SectionLayout";
 
 import Input from "../Input";
+import Image from "../Image";
+import Upload from "../Upload";
 import LatitudeLongitude from "../LongitudeLatitude";
 
 const SectionCover = ({ t, idSurvey, kodeSurvey }) => {
   const btsMain = useSelector((state) => state.formbts.btsMain);
   return (
     <SectionLayout title={t} idSurvey={idSurvey} kodeSurvey={kodeSurvey}>
+      <Upload />
       <Input
         label='Site ID'
         section='1'
@@ -153,6 +156,13 @@ const SectionCover = ({ t, idSurvey, kodeSurvey }) => {
         type='number'
       />
       <hr className='mb-3' />
+      <Upload label='Foto KTP' section='1' />
+      <Upload label='Foto Cap Desa' section='1' />
+      <Upload
+        label='File Site Survey Report dan Approval'
+        section='1'
+        name='jpgpdf'
+      />
     </SectionLayout>
   );
 };
